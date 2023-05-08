@@ -1,5 +1,8 @@
 class Scene < ApplicationRecord
 
-  has_many :gifts, dependent: :destroy, uniqueness: true
+  has_many :gifts, dependent: :destroy
 
 end
+
+# MEMO
+# uniqueness: true

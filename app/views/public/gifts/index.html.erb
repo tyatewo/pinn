@@ -1,0 +1,16 @@
+<% @tag_list.each do |list|%>
+  <%=list.name %>
+  <%="(#{list.gifts.count})" %>
+<% end %>
+
+
+<% @gifts.each do |gift| %>
+<%# giftにタグは何個もついていて配列になっている。map(&:name)は配列の要素１つ１つを:nameの型にする %>
+  <i class="fas fa-tag"><%= gift.tags.map(&:name).join(', ') %></i>
+<% end %>
+
+<!--タグリスト-->
+<% @tag_list.each do |list|%>
+  <%=link_to list.name,search_tag_path(tag_id: list.id) %>
+  <%="(#{list.gifts.count})" %>
+<% end %>

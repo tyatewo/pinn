@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0"></h5>
+      <div class="form-body p-4">
+        <% if @gift.errors.any? %>
+          <ul class="alert alert-danger" role="alert">
+            <h6 class="alert-heading">
+              <%= @gifts.errors.count %>件のエラーが発生しました
+            </h6>
+            <% @gifts.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <h2 class = "text-center">贈り物新規投稿</h2>
+        <%= form_with model: @gifts do |f| %>
+          <%= f.file_field :image, accept: "image/*", class: "w-100" %>
+          <div class="input-group mb-3 mt-4" >
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-gift" style="color: #ca76cb;"></i></span>
+            </div>
+            <%= f.text_field :name, class:"form-control", placeholder:"商品名" %>
+          </div>
+
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-building" style="color: #ca76cb;"></i></span>
+            </div>
+          <%= f.text_field :shop_name, class:"form-control", rows:"3", placeholder:"店舗名" %>
+          </div>
+
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-dollar-sign" style="color: #ca76cb;"></i></span>
+            </div>
+          <%= f.text_field :price, class:"form-control", rows:"3", placeholder:"料金" %>
+          </div>
+
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-birthday-cake" style="color: #ca76cb;"></i></span>
+            </div>
+
+            <%= f.select :scene, ['母の日', '父の日', '誕生日', '記念日', '自分ご褒美'], {include_blank: '---'} %>
+          </div>
+
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-tag" style="color: #ca76cb;"></i></span>
+            </div>
+              <%= f.text_field :tag_name, class:"form-control", rows:"3", placeholder:"タグ" %>
+          </div>
+
+
+          <hr>
+          <%= f.submit 'シェアする！', class:"btn btn-lg btn-block btn-info mt-4" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

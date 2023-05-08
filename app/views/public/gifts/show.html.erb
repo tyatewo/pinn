@@ -1,0 +1,8 @@
+<% @gift_tags.each do |tag| %>
+  <%=tag.name%><%="(#{tag.gifts.count})" %>
+<% end %>
+
+<!--タグ-->
+  <% @gift_tags.each do |tag| %>
+      <%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.gifts.count})" %>
+  <% end %>

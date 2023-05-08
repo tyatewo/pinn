@@ -60,3 +60,4 @@ end
 #  devise_for :admin, skip: [:registrations, :passwords], controllers: {
 #    sessions: "admin/sessions"
 #  }, path: '', path_names: { sign_in: 'sign_in', sign_out: 'sign_out'}
+# get "search_tag"=>"posts#search_tag"
