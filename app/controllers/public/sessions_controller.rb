@@ -25,6 +25,12 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
+    def guest_sign_in
+      customer = Customer.guest
+      sign_in customer
+      redirect_to gifts_path, notice: 'guestuserでログインしました。'
+    end
+
     def after_sign_in_path_for(resource)
     gifts_path #贈り物一覧へ遷移
     end

@@ -1,0 +1,9 @@
+<h1>マイページ</h1>
+
+
+
+<% if customer.name != "guestuser" %>
+<div class='row'>
+  <%= link_to '',edit_customer_path(customer),class: "btn btn-outline-Danger btn-block  edit_user_#{customer.id}" %>
+</div>
+<% end %>
