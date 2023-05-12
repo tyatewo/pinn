@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     }
 
     devise_scope :customer do
-      resource :my_pages, only: [:edit, :update] # 会員情報変更(マイページ)
+      resource :my_pages, only: [:show, :edit, :update] # 会員情報変更(マイページ)
       post '/guest_sign_in', to: 'sessions#guest_sign_in' #ゲストログイン用
     end
 
