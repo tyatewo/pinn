@@ -11,3 +11,10 @@ Admin.create!(
    email: 'admin@admin',
    password: 'testtest'
   )
+
+Customer.create!(
+   email: '111@1111',
+   password: '111111',
+   name: '111',
+   profile: '111'
+  )

@@ -8,12 +8,17 @@
         <%= render "public/shared/error_messages", resource: resource %>
 
         <div class="field">
-          <%= f.label :email %><br />
+          <%= f.label :ユーザーネーム %><br />
+          <%= f.text_field :name, autofocus: true %>
+        </div>
+
+        <div class="field">
+          <%= f.label :メールアドレス %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
 
         <div class="field">
-          <%= f.label :password %>
+          <%= f.label :パスワード %>
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %><br />
@@ -21,16 +26,18 @@
         </div>
 
         <div class="field">
-          <%= f.label :password_confirmation %><br />
+          <%= f.label :パスワード（確認用） %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
 
         <div class="actions">
-          <%= f.submit "Sign up" %>
+          <%= f.submit "新規登録" %>
         </div>
       <% end %>
-
-      <%= render "public/shared/links" %>
+      <h6 class="mt-5"><span class="bg-light px-3 pb-1">登録済みの方</span></h6>
+      <div class="text-center">
+        <%= render "public/shared/links" %>
+      </div>
 
     </div>
   </div>

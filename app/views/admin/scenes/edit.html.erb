@@ -1,0 +1,12 @@
+<div class="container">
+
+  <h4>シーン編集</h4>
+
+  <%= form_with model: [:admin, @scene] do |f| %>
+    <p>ジャンル名
+    <%= f.text_field :name, placeholder: "シーン名" %>
+    <%= f.submit "変更を保存",class: 'btn btn-success' %>
+    </p>
+  <% end %>
+
+</div>

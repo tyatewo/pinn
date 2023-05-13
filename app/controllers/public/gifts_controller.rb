@@ -2,6 +2,7 @@ class Public::GiftsController < ApplicationController
 
   def new
     @gift = Gift.new
+    @scenes = Scene.all
   end
 
   def create
@@ -9,9 +10,10 @@ class Public::GiftsController < ApplicationController
     @gift.customer_id = current_customer.id
     @tag_list = params[:gift][:tag_name].split(',')
     if @gift.save
-       @gift.save_tag(tag_name)
+       @gift.save_tag(@tag_list)
        redirect_to gifts_path
     else
+      @scenes = Scene.all
       render :new
     end
   end
@@ -19,6 +21,7 @@ class Public::GiftsController < ApplicationController
   def index
     @gifts = Gift.page(params[:page]).per(10)
     @tag_list=Tag.all
+    @scenes = Scene.all
   end
 
   def search_tag
@@ -68,7 +71,7 @@ class Public::GiftsController < ApplicationController
   private
 
   def gift_params
-    params.require(:gift).permit(:scene_id, :name, :shop_name, :price, :introduction, :tag_name)
+    params.require(:gift).permit(:scene_id, :name, :shop_name, :price, :introduction, :gift_image)
   end
 
 end

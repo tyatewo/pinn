@@ -6,16 +6,16 @@
         <% if @gift.errors.any? %>
           <ul class="alert alert-danger" role="alert">
             <h6 class="alert-heading">
-              <%= @gifts.errors.count %>件のエラーが発生しました
+              <%= @gift.errors.count %>件のエラーが発生しました
             </h6>
-            <% @gifts.errors.full_messages.each do |message| %>
+            <% @gift.errors.full_messages.each do |message| %>
               <li><%= message %></li>
             <% end %>
           </ul>
         <% end %>
         <h2 class = "text-center">贈り物新規投稿</h2>
-        <%= form_with model: @gifts do |f| %>
-          <%= f.file_field :image, accept: "image/*", class: "w-100" %>
+        <%= form_with model: @gift do |f| %>
+          <%= f.file_field :gift_image, accept: "image/*", class: "w-100" %>
           <div class="input-group mb-3 mt-4" >
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-gift" style="color: #ca76cb;"></i></span>
@@ -34,6 +34,13 @@
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-dollar-sign" style="color: #ca76cb;"></i></span>
             </div>
+          <%= f.text_field :introduction, class:"form-control", rows:"3", placeholder:"商品説明" %>
+          </div>
+
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-dollar-sign" style="color: #ca76cb;"></i></span>
+            </div>
           <%= f.text_field :price, class:"form-control", rows:"3", placeholder:"料金" %>
           </div>
 
@@ -42,7 +49,8 @@
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-birthday-cake" style="color: #ca76cb;"></i></span>
             </div>
 
-            <%= f.select :scene, ['母の日', '父の日', '誕生日', '記念日', '自分ご褒美'], {include_blank: '---'} %>
+            <%= f.select :scene_id, @scenes.map { |scene| [scene.name, scene.id] },
+              { include_blank: '選択してください'} %>
           </div>
 
           <div class="input-group mb-3 mt-4">
