@@ -34,8 +34,10 @@ class Public::GiftsController < ApplicationController
 
   def show
     @gift = Gift.find(params[:id])
-    @gift_comment=GiftComment.new
+    #@gift_comment=GiftComment.new
     @gift_tags = @gift.tags
+    @comment = Comment.new
+    @comments = @gift.comments
   end
 
   def edit

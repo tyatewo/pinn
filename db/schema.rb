@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2023_05_13_082344) do
   create_table "comments", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "gift_id", null: false
-    t.integer "body", null: false
+    t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

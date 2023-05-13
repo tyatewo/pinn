@@ -5,6 +5,10 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :gifts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
+
   def self.guest
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64
