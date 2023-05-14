@@ -1,10 +1,54 @@
-<div class="field">
-    <%#  %>
-    <%= f.label "タグ (,で区切ると複数タグ登録できます)" %>
-    <%= f.text_field :name,value: @tag_list,class:"form-control"%>
-  </div>
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0 text-center">贈り物情報編集</h5>
+      <div class="form-body p-4">
+    <%= form_with model: @gift, url: gift_path(@gift.id) do |f| %>
+      <div class="row">
+        <div class="form-group col-md-3">
+          <lavel for="inputName">商品画像</lavel>
+        </div>
+        <div class="col-md-9 content-section">
+          <%= f.file_field :gift_image, accept: "image/*", class: "w-100" %>
+        </div>
 
-　<div class="actions" style="margin:20px 0;">
-    <%= f.submit "投稿",class:"btn btn-outline-primary btn-block" %>
-  </div>
-  <% end %>
+        <div class="form-group col-md-3">
+          <lavel for="inputName">商品名</lavel>
+        </div>
+        <div class="col-md-9 content-section">
+          <%= f.text_field :name, autofocus: true, id:"inputName" %>
+      　</div>
+
+      　<div class="form-group col-md-3">
+          <lavel for="inputName">店舗名</lavel>
+        </div>
+        <div class="col-md-9 content-section">
+          <%= f.text_field :shop_name, autofocus: true, id:"inputName" %>
+      　</div>
+
+      　<div class="form-group col-md-3">
+          <lavel for="inputName">料金</lavel>
+        </div>
+        <div class="col-md-9 content-section">
+          <%= f.text_field :price, autofocus: true, id:"inputName", placeholder:"税込料金（数字のみ入力（円や,は不要））" %>
+      　</div>
+
+      　<div class="form-group col-md-3">
+          <lavel for="inputName">シーン</lavel>
+        </div>
+        <div class="col-md-9 content-section">
+          <%#= f.select :scene_id, @scenes.map { |scene| [scene.name, scene.id] },
+                  { include_blank: '選択してください'} %>
+      　</div>
+
+      　<div class="form-group col-md-3">
+          <lavel for="inputName">利用した感想</lavel>
+        </div>
+        <div class="col-md-9 content-section">
+          <%= f.text_area :introduction, autofocus: true, id:"inputName" %>
+      　</div>
+
+        <div class="center">
+          <%= f.submit '保存', class: 'btn btn-outline-success' %>
+        </div>
+    <% end %>

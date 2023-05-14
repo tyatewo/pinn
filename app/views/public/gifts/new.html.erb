@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-      <h5 class="text-dark bg-light p-4 mb-0"></h5>
+      <h5 class="text-dark bg-light p-4 mb-0 text-center">贈り物新規投稿</h5>
       <div class="form-body p-4">
         <% if @gift.errors.any? %>
           <ul class="alert alert-danger" role="alert">
@@ -13,7 +13,7 @@
             <% end %>
           </ul>
         <% end %>
-        <h2 class = "text-center">贈り物新規投稿</h2>
+
         <%= form_with model: @gift do |f| %>
           <%= f.file_field :gift_image, accept: "image/*", class: "w-100" %>
           <div class="input-group mb-3 mt-4" >
@@ -34,14 +34,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-dollar-sign" style="color: #ca76cb;"></i></span>
             </div>
-          <%= f.text_field :introduction, class:"form-control", rows:"3", placeholder:"商品説明" %>
-          </div>
-
-          <div class="input-group mb-3 mt-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text" aria-hidden="true"><i class="fas fa-dollar-sign" style="color: #ca76cb;"></i></span>
-            </div>
-          <%= f.text_field :price, class:"form-control", rows:"3", placeholder:"料金" %>
+          <%= f.text_field :price, class:"form-control", rows:"3", placeholder:"税込料金（数字のみ入力（円や,は不要））" %>
           </div>
 
           <div class="input-group mb-3 mt-4">
@@ -57,7 +50,14 @@
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-tag" style="color: #ca76cb;"></i></span>
             </div>
-              <%= f.text_field :tag_name, class:"form-control", rows:"3", placeholder:"タグ" %>
+              <%= f.text_field :tag_name, class:"form-control", rows:"3", placeholder:"タグ (,で区切ると複数タグ登録できます)" %>
+          </div>
+
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-dollar-sign" style="color: #ca76cb;"></i></span>
+            </div>
+              <%= f.text_area :introduction, class:"form-control", rows:"3", placeholder:"利用してみた感想" %>
           </div>
 
 

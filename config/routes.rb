@@ -20,6 +20,9 @@ Rails.application.routes.draw do
       # resources :tags, except: [:index] # TODO: gifts内部でロジックが組む場合不要の可能性あり
       resources :bookmarks, only: [:create, :show, :destroy]
     end
+
+    get "/search" => "public/gifts#index", as: 'search'
+
   end
 
   ###########
@@ -43,6 +46,8 @@ Rails.application.routes.draw do
     #シーン一覧、作成、編集、更新
     resources :scenes, only: [:index, :create, :edit, :update]
   end
+
+  get "/admin/search" => "admin/gifts#index"
 
   get '/about', to: 'homes#about'
   root to: 'homes#top'

@@ -33,5 +33,13 @@ class Gift < ApplicationRecord
    end
   end
 
+  def self.search(search)
+    if search
+      Gift.where(['content LIKE ?', "%#{search}%"])
+    else
+      Gift.all
+    end
+  end
+
 
 end

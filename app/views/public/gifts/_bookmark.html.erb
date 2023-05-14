@@ -1,0 +1,9 @@
+<% if gift.favorited_by?(current_user) %>
+　<%= link_to gift_bookmarks_path(gift), method: :delete, remote: true do %>
+　　♥<%= gift.favorites.count %>
+　<% end %>
+<% else %>
+　<%= link_to gift_bookmaeks_path(gift), method: :post, remote: true do %>
+　　♡<%= gift.bookmarks.count %>
+　<% end %>
+<% end %>
