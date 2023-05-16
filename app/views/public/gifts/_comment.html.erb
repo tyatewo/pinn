@@ -1,23 +1,24 @@
+<%= form_with model: [gift, comment], local: false do |f| %>
 <table>
-  <h2>コメント</h2>
-    <% comments.each do |comment| %>
-      <tr>
-        <td>
-          <%= image_tag gift_comment.customer.get_profile_image, size:"100x100" %><br>
-            <%= gift_comment.customer.name %>
-        </td>
+  <thead><h2>コメント</h2><thead>
+    <tbody>
+      <% gift.comments.each do |comment| %>
+        <tr>
+          <td>
+            <%= image_tag comment.customer.profile_image, size: '100x100' %><br>
+              <%= comment.customer.name %>
+          </td>
 
-        <td><%= gift_comment.body %></td>
-            <% if gift_comment.user == current_user %>
-              <td><%= link_to "Destroy", gift_comment_path(gift_comment.gift, gift_comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %></td>
-            <% end %>
-      </tr>
-    <% end %>
+          <td><%= comment.body %></td>
+              <% if comment.customer == current_customer %>
+                <td><%= link_to "Destroy", gift_comment_path(gift, comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %></td>
+              <% end %>
+        </tr>
+      <% end %>
+        <tr>
+            <td><%= f.text_area :body, class: 'form-control', rows: 4 %></td>
+            <td><%= f.submit 'コメントする', class:"btn btn-lg btn-block btn-info mt-4" %></td>
+        <tr>
+   </tbody>
 </table>
-
-
-<%= form_with model: [gift, comment] do |f| %>
-  <%= f.text_area :body %>
-  </br>
-  <%= f.submit 'コメントする', class:"btn btn-lg btn-block btn-info mt-4" %>
 <% end %>

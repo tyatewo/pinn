@@ -3,8 +3,8 @@
     <div class= "col-md-4">
       <table class= "table">
         <tr>
-        <% if current_customer.profile_image.attached? %>
-          <%= image_tag current_customer.profile_image, size: "300x300" %>
+        <% if @customer.profile_image.attached? %>
+          <%= image_tag @customer.profile_image, size: "300x300" %>
         <% else %>
           <%= image_tag 'no_image.png', size: "300x300" %>
         <% end %>
@@ -28,23 +28,26 @@
             <h5><strong><%= @customer.profile %></strong></h5>
           </div>
         </div>
-        <% if @customer.name != "guestuser" %>
-          <%= link_to "ユーザー情報編集", edit_my_page_path, class: 'btn btn-outline-info' %>
-          <%= link_to "ブックマーク一覧", bookmarks_my_pages_path, class: "btn btn-outline-success" %>
-        <% end %>
+
+        <%#= link_to "ユーザーを退会させる", admin_customer_withdrawal_path, class: 'btn btn-success' %>
+        <%= link_to "退会させる", admin_customer_withdrawal_path(@customer.id), method: :patch, class: 'btn btn-danger' %>
+
+        <%# if customer.name != "guestuser" %>
+        <%#= link_to '',edit_customer_path(customer),class: "btn btn-outline-Danger btn-block  edit_user_#{customer.id}" %>
+        <%# end %>
       </div>
     </div>
 
 
 
-    <div class="col-10 my-4">
+    <div class="col-10">
       <h2>シェアした贈り物</h2>
         <% if @gifts.empty? %>
           <p>まだシェアしていません。</p>
         <% else %>
             <% @gifts.each do |gift| %>
               <div class="col-3 border p-3 text-center">
-                <%= link_to gift_path(gift.id) do %><%# その商品の詳細ページ %>
+                <%= link_to admin_gift_path(gift.id) do %><%# その商品の詳細ページ %>
                   <% if gift.gift_image.attached? %>
                     <%= image_tag gift.gift_image, size: "175x175" %> <%# 商品の商品画像 %>
                   <% else %>
@@ -59,8 +62,8 @@
               </div>
             <% end %>
         <% end %>
-    </div>
-  </div>
+      </div>
+   </div>
 </div>
 
 

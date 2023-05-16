@@ -4,7 +4,7 @@ class Public::MyPagesController < ApplicationController
 
   def show
     @customer = current_customer
-    @gifts = Gift.all
+    @gifts = @customer.gifts
   end
 
   def edit
@@ -14,10 +14,15 @@ class Public::MyPagesController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-      redirect_to my_pages_path(@customer)
+      redirect_to my_page_path(@customer)
     else
       render :edit
     end
+  end
+
+  def bookmarks
+    #customer = Customer.find(params[:id])
+    @bookmarks = current_customer.bookmarks
   end
 
 

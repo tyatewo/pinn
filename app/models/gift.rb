@@ -41,5 +41,9 @@ class Gift < ApplicationRecord
     end
   end
 
+  def bookmarked_by?(customer)
+    customer.present? && bookmarks.exists?(customer_id: customer.id)
+  end
+
 
 end

@@ -34,6 +34,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
 
       t.string :name,          null: true
       t.text :profile
+      
       t.timestamps null: false
     end
 

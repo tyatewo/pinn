@@ -17,13 +17,11 @@
           <u class="text-body"><%=  customer.name %></u>
           <% end %>
         </td>
-        <td>
-          <% if customer.status == true %>
-            <%= content_tag :span, '有効', class: 'text-success' %>
-          <% else %>
-            <%= '退会' %>
-          <% end %>
-        </td>
+        <% if customer.is_deleted  %>
+          <td>退会</td>
+        <% else %>
+          <td><%= content_tag :span, '有効', class: 'text-success' %></td>
+        <% end %>
       </tr>
       <% end %>
     </tbody>

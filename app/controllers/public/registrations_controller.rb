@@ -3,6 +3,8 @@
 class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+    before_action :configure_sign_up_params, only: [:create]
+    before_action :ensure_normal_user, only: %i[update destroy]
 
   # GET /resource/sign_up
   # def new
@@ -38,7 +40,24 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  def after_sign_in_path_for(resource)
+    gifts_path(resource)
+  end
+
+  def ensure_normal_customer
+    if resource.email == 'guest@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません。'
+    end
+  end
+
+  protected
+
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :password_confirmation])
+  end
+  #def configure_sign_up_params
+    # devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:first_name,:last_name_kana,:first_name_kana,:postal_code,:address,:phone_number])
+  #end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -60,8 +79,6 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  def after_sign_in_path_for(resource)
-    gifts_path #贈り物一覧へ遷移
-  end
+
 
 end

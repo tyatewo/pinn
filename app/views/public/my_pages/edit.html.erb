@@ -1,31 +1,30 @@
 <div class="container">
-
   <h2>マイページ編集</h2>
-  <%= form_with model: @customer, url: my_pages_path, method: :patch do |f| %>
+    <%= form_with model: @customer, url: my_page_path, method: :patch do |f| %>
+      <div class="row">
+        <div class= "form-group col-md-3">
+          <label for= "inputImage">ユーザー画像</label>
+        </div>
+        <div class="col-md-9 content-section">
+          <%= f.file_field :profile_image, class: "form-control-file", placeholder:"Image", accept:"image/*" %>
+        </div>
 
-  <div class="row">
+        <div class="form-group col-md-3">
+          <lavel for="inputName">ユーザーネーム</lavel>
+        </div>
+        <div class="col-md-9 content-section">
+          <%= f.text_field :name, autofocus: true, id:"inputName" %>
+        </div>
 
-    <div class= "form-group col-md-3">
-      <label for= "inputImage">ユーザー画像</label>
-    </div>
-    <div class="col-md-9 content-section">
-      <%= f.file_field :profile_image, class: "form-control-file", placeholder:"Image", accept:"image/*" %>
-    </div>
+        <div class="form-group col-md-3">
+          <lavel for="inputName">プロフィール</lavel>
+        </div>
+        <div class="col-md-9 content-section">
+          <%= f.text_field :profile, autofocus: true, id:"inputName" %>
+        </div>
 
-    <div class="form-group col-md-3">
-      <lavel for="inputName">ユーザーネーム</lavel>
-    </div>
-    <div class="col-md-9 content-section">
-      <%= f.text_field :name, autofocus: true, id:"inputName" %>
-    </div>
+        <%= f.submit '保存', class: 'btn btn-success' %>
 
-    <div class="form-group col-md-3">
-      <lavel for="inputName">プロフィール</lavel>
+      <% end %>
     </div>
-    <div class="col-md-9 content-section">
-      <%= f.text_field :profile, autofocus: true, id:"inputName" %>
-    </div>
-
-    <%= f.submit '保存', class: 'btn btn-success' %>
-
-  <% end %>
+  </div>

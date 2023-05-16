@@ -1,21 +1,21 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-2">
+    <div class="col-2 mx-1">
       <%= link_to "新規投稿", new_gift_path, class:"btn btn-outline-primary btn-block" %>
     <div class="my-2"></div>
       <%= render partial: "search" %>
     <div class="my-2"></div>
       <%= render 'scene_search', scenes: @scenes %>
     </div>
-    <div class="col-10">
+    <div class="col-9">
       <h4>贈り物一覧</h4>
       <div class="row">
         <% if @gifts.empty? %>　<%# 商品は空ですか？ %>
           <p>該当する贈り物が見つかりませんでした。</p>
         <% else %>
           <% @gifts.each do |gift| %> <%# 商品たちを一個ずつ取り出します。 %>
-            <div class="col-3">
+            <div class="col-3 border p-3 text-center">
               <%= link_to gift_path(gift.id) do %><%# その商品の詳細ページ %>
               <% if gift.gift_image.attached? %>
                 <%= image_tag gift.gift_image, size: "175x175" %> <%# 商品の商品画像 %>
@@ -25,8 +25,8 @@
               <% end %>
                 <p class="text-body"><%= gift.name %></p><%# 商品の名前 %>
                 <p class="text-body"><%= gift.shop_name %></p><%# 店舗の名前 %>
-              <div id="favorite-<%= gift.id %>">
-                <%= render "gifts/bookmark", gift: gift %>
+              <div id="bookmark-<%= gift.id %>">
+                <%= render "public/gifts/bookmark", gift: gift %>
               </div>
             </div>
           <% end %>

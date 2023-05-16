@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="row">
     <div class="col-6">
       <% if @gift.gift_image.attached? %>
@@ -9,6 +8,7 @@
       <% end %>
       <!--商品の商品画像-->
     </div>
+
     <div class="col-6">
       <div class="form-group">
         <lavel for="inputName">商品名</lavel>
@@ -49,25 +49,34 @@
       <div id= "bookmark-<%= @gift.id %>">
         <%= render 'bookmark', gift: @gift %>
       </div>
+    </div>
 
+    <div class = "col-12 my-4">
+      <table>
+        <h2>利用した感想</h2>
+          <tr>
+            <td>
+              <% if @gift.customer.profile_image.attached? %>
+                <%= image_tag @gift.customer.profile_image, size: "100x100" %><br>
+                <%= @gift.customer.name %>
+              <% else %>
+                <%= image_tag 'no_image.png', size: "175x175" %><br>
+              <% end %>
+            </td>
+            <td><%= @gift.introduction %></td>
+          </tr>
+      </table>
+    </div>
+
+    <div class = "col-12 my-2">
+      <% if @gift.customer_id == current_customer.id %>
+        <%= link_to "編集", edit_gift_path(@gift.id), class: "btn btn-outline-success" %>
+        <%= link_to "削除", gift_path(@gift.id), method: :delete, "data-confirm"=> "本当に消しますか？", class:"btn btn-outline-danger" %>
+      <% end %>
+    </div>
+
+    <div class = "col-12 my-5" id="comment">
+      <%= render partial: 'public/gifts/comment', locals: {gift: @gift, comment: @comment} %>
     </div>
   </div>
-
-  <div class = "row">
-    <h2>利用した感想</h2>
-  </div>
-  <div class = "row">
-    <%= @gift.introduction %>
-  </div>
-
-  <div class = "row">
-    <%# if @gift.customer_id == current_customer %>
-      <%= link_to "編集", edit_gift_path(@gift.id), class: "btn btn-outline-success" %>
-      <%= link_to "削除", gift_path(@gift.id), method: :delete, "data-confirm"=> "本当に消しますか？", class:"btn btn-outline-danger" %>
-    <%# end %>
-  </div>
-
-  <div class = "row">
-    <%= render 'comment', comments: @comments, comment: @comment, gift: @gift %>
-
 </div>

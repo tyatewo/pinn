@@ -1,23 +1,32 @@
-<h1>(管理用)贈り物一覧</h1>
-
 <div class="container">
   <div class="row">
     <div class="col-2">
-      <%#= render 'scene_search' %>
+      <%= link_to "新規投稿", new_gift_path, class:"btn btn-outline-primary btn-block" %>
+    <div class="my-2"></div>
+      <%= render partial: "search" %>
+    <div class="my-2"></div>
+      <%= render 'scene_search', scenes: @scenes %>
     </div>
     <div class="col-10">
       <h4>贈り物一覧</h4>
       <div class="row">
-        <% if @gifts.empty? %>　<%# 商品は空ですか？ %>
+        <% if @gifts.empty? %> <%# 商品は空ですか？ %>
           <p>該当する贈り物が見つかりませんでした。</p>
         <% else %>
           <% @gifts.each do |gift| %> <%# 商品たちを一個ずつ取り出します。 %>
-            <div class="col-3">
-              <%= link_to gift_path(gift.id) do %><%# その商品の詳細ページ %>
+            <div class="col-3 border p-3 text-center">
+              <%= link_to admin_gift_path(gift.id) do %><%# その商品の詳細ページ %>
+              <% if gift.gift_image.attached? %>
                 <%= image_tag gift.gift_image, size: "175x175" %> <%# 商品の商品画像 %>
+              <% else %>
+                <%= image_tag "about.png", size: "175x175" %>
+              <% end %>
               <% end %>
                 <p class="text-body"><%= gift.name %></p><%# 商品の名前 %>
                 <p class="text-body"><%= gift.shop_name %></p><%# 店舗の名前 %>
+              <div id="bookmark-<%= gift.id %>">
+                <%= render "admin/gifts/bookmark", gift: gift %>
+              </div>
             </div>
           <% end %>
         <% end %>
@@ -26,7 +35,8 @@
   </div>
   <div class="row">
     <div class="mx-auto">
-      <%#= paginate @gifts, theme: 'twitter-bootstrap-4' %><%# ページネーション＠商品、テーマ：ツイッターブートストラップ %>
+      <%= paginate @gifts, theme: 'twitter-bootstrap-4' %><%# ページネーション＠商品、テーマ：ツイッターブートストラップ %>
+      <%#= paginate @gifts, theme: 'google' %><%# ページネーション＠商品、テーマ：ツイッターブートストラップ %>
     </div>
   </div>
 </div>
@@ -34,17 +44,8 @@
 
 
 <% @tag_list.each do |list| %>
-  <%=list.name %>
+  <i class="fas fa-tag"></i>
+  <%=link_to list.name, admin_gifts_path(tag_id: list.id) %>
   <%="(#{list.gifts.count})" %>
 <% end %>
 
-
-<% @gifts.each do |gift| %>
-  <i class="fas fa-tag"><%= gift.tags.map(&:name).join(', ') %></i>
-<% end %>
-
-<!--タグリスト-->
-<% @tag_list.each do |list| %>
-  <%=link_to list.name,search_tag_path(tag_id: list.id) %>
-  <%="(#{list.gifts.count})" %>
-<% end %>

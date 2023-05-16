@@ -1,4 +1,4 @@
-class Public::BookmarksController < ApplicationController
+class Admin::BookmarksController < ApplicationController
 
   def create
     @gift = Gift.find(params[:gift_id])

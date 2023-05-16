@@ -57,7 +57,7 @@ class Public::GiftsController < ApplicationController
     #@gift_tags = @gift.tags
     @comment = Comment.new
     @comments = @gift.comments
-    @tag_list= @gift.tags
+    @tag_list = @gift.tags
   end
 
   def edit
@@ -70,26 +70,26 @@ class Public::GiftsController < ApplicationController
     @gift = Gift.find(params[:id]) # gift id持ってくる
     tag_list=params[:gift][:name].split(',') # 入力されたタグを受け取る
     if @gift.update(gift_params) # もし更新されたら
-      if params[:gift][:status]== "公開"
         @old_relations=GiftTag.where(gift_id: @gift.id) # gift_idにくっついてるタグを@oldに入れる
         @old_relations.each do |relation| # それぞれ取り出す
-        relation.delete # 消す
+          relation.delete # 消す
         end
-       @gift.save_tag(tag_list) # gift_idにくっついてるタグを
-
-       redirect_to gift_path(@gift.id)
-      else
-      render:edit
-      end
+        @gift.save_tag(tag_list) # gift_idにくっついてるタグを
+        redirect_to gift_path(@gift.id)
+    else
+        @scenes = Scene.all
+        flash.now[:notice] = '更新しました'
+        render:edit
     end
+
   end
 
   def destroy
-    gift = Gift.find(params[:id])
-    gift.destroy
+    @gift = Gift.find(params[:id])
+    @gift.destroy
+    #@bookmark = current_customer.bookmarks.find_by(gift_id: @gift.id)
+    #@bookmark.destroy
     redirect_to gifts_path
-    bookmark = current_customer.bookmarks.find_by(gift_id: @gift.id)
-    bookmark.destroy
   end
 
 

@@ -1,9 +1,9 @@
-<% if gift.bookmarked_by?(current_customer) %>
+<% if current_customer && gift.bookmarked_by?(current_customer) %>
   <%= link_to gift_bookmarks_path(gift), method: :delete, remote: true do %>
-  ♥<%= gift.bookmarks.count %>
-<% end %>
+    ♥<%= gift.bookmarks.count %>
+  <% end %>
 <% else %>
   <%= link_to gift_bookmarks_path(gift), method: :post, remote: true do %>
-  ♡<%= gift.bookmarks.count %>
-<% end %>
+    ♡<%= gift.bookmarks.count %>
+  <% end %>
 <% end %>
