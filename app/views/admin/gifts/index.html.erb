@@ -1,13 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-2">
-      <%= link_to "新規投稿", new_gift_path, class:"btn btn-outline-primary btn-block" %>
-    <div class="my-2"></div>
-      <%= render partial: "search" %>
-    <div class="my-2"></div>
-      <%= render 'scene_search', scenes: @scenes %>
+    <div class="col-2 mx-1">
+      <div class="search my-2">
+        <%= render partial: "search" %>
+      </div>
+      <div class="my-2">
+        <%= render 'scene_search', scenes: @scenes %>
+      </div>
     </div>
-    <div class="col-10">
+
+    <div class="col-9">
       <h4>贈り物一覧</h4>
       <div class="row">
         <% if @gifts.empty? %> <%# 商品は空ですか？ %>
@@ -36,16 +38,17 @@
   <div class="row">
     <div class="mx-auto">
       <%= paginate @gifts, theme: 'twitter-bootstrap-4' %><%# ページネーション＠商品、テーマ：ツイッターブートストラップ %>
-      <%#= paginate @gifts, theme: 'google' %><%# ページネーション＠商品、テーマ：ツイッターブートストラップ %>
     </div>
   </div>
 </div>
 
 
-
-<% @tag_list.each do |list| %>
-  <i class="fas fa-tag"></i>
-  <%=link_to list.name, admin_gifts_path(tag_id: list.id) %>
-  <%="(#{list.gifts.count})" %>
+<% if @tag_list.present? && @tag_list.count > 0 %>
+  <% @tag_list.each do |list| %>
+    <% if list.gifts.count > 0 %>
+      <i class="fas fa-tag"></i>
+      <%=link_to list.name, admin_gifts_path(tag_id:list.id) %>
+      <%="(#{list.gifts.count})" %>
+    <% end %>
+  <% end %>
 <% end %>
-

@@ -50,9 +50,13 @@
         <%= render 'bookmark', gift: @gift %>
       </div>
 
+      <div class = "my-2">
+        <%= link_to "贈り物一覧に戻る", admin_gifts_path, class: 'btn btn-secondary' %>
+      </div>
+
     </div>
 
-    <div class = "my-4">
+    <div class = "col-12 my-4">
       <table>
         <h2>利用した感想</h2>
           <tr>
@@ -70,13 +74,13 @@
       </table>
     </div>
 
-    <div class = "my-5">
+    <div class = "col-12 my-2">
       <%# if @gift.customer_id == current_customer %>
         <%= link_to "削除", admin_gift_path(@gift.id), method: :delete, "data-confirm"=> "本当に消しますか？", class:"btn btn-outline-danger" %>
       <%# end %>
     </div>
 
-    <div class = "my-5" id="comments">
+    <div class = "col-12 my-5" id="comments">
       <%= render 'comment', gift: @gift %>
     </div>
   </div>

@@ -28,10 +28,9 @@
             <h5><strong><%= @customer.profile %></strong></h5>
           </div>
         </div>
-        <% if @customer.name != "guestuser" %>
-          <%= link_to "ユーザー情報編集", edit_my_page_path, class: 'btn btn-outline-info' %>
-          <%= link_to "ブックマーク一覧", bookmarks_my_pages_path, class: "btn btn-outline-success" %>
-        <% end %>
+
+        <%= link_to "ユーザー情報編集", edit_my_page_path, class: 'btn btn-outline-info' %>
+        <%= link_to "ブックマーク一覧", bookmarks_my_pages_path, class: "btn btn-outline-success" %>
       </div>
     </div>
 

@@ -1,4 +1,5 @@
 class Admin::BookmarksController < ApplicationController
+  before_action :authenticate_admin!
 
   def create
     @gift = Gift.find(params[:gift_id])

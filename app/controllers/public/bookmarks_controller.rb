@@ -1,4 +1,5 @@
 class Public::BookmarksController < ApplicationController
+  before_action :authenticate_customer!
 
   def create
     @gift = Gift.find(params[:gift_id])

@@ -1,4 +1,5 @@
 class Admin::GiftsController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @gifts = Gift.page(params[:page]).per(12)

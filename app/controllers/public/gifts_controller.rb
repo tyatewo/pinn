@@ -1,27 +1,39 @@
 class Public::GiftsController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :is_matching_login_customer,  only:[:edit, :update]
 
   def new
-    @gift = Gift.new
-    @scenes = Scene.all
+    if current_customer.name == "guestuser"
+      flash[:notice] = "ゲストユーザーは新規投稿できません。"
+      redirect_to gifts_path
+    else
+      @gift = Gift.new
+      @scenes = Scene.all
+    end
   end
 
   def create
-    @gift = Gift.new(gift_params)
-    @gift.customer_id = current_customer.id
-    @tag_list = params[:gift][:tag_name].split(',')
-    if @gift.save
-       @gift.save_tag(@tag_list)
-       redirect_to gifts_path
+    if current_customer.name == "guestuser"
+      flash[:notice] = "ゲストユーザーは新規投稿できません。"
+      redirect_to gifts_path
     else
-      @scenes = Scene.all
-      render :new
+      @gift = Gift.new(gift_params)
+      @gift.customer_id = current_customer.id
+      @tag_list = params[:gift][:tag_name].split(',')
+        if @gift.save
+           @gift.save_tag(@tag_list)
+           redirect_to gifts_path
+        else
+          @scenes = Scene.all
+          render :new
+        end
+      #@bookmark = current_customer.bookmarks.new(gift_id: @gift.id)
+      #@bookmark.save
     end
-    @bookmark = current_customer.bookmarks.new(gift_id: @gift.id)
-    @bookmark.save
   end
 
   def index
-    @gifts = Gift.page(params[:page]).per(12)
+    @gifts = Gift.page(params[:page]).per(12).order(id: "DESC") ## idの降順
       if params[:search]
         @gifts = Gift.where('name LIKE ?', "%#{params[:search]}%").page(params[:page]).per(12)
       end
@@ -54,10 +66,11 @@ class Public::GiftsController < ApplicationController
 
   def show
     @gift = Gift.find(params[:id])
-    #@gift_tags = @gift.tags
+    @gift.reload # キャッシュをクリアして最新のデータを取得
     @comment = Comment.new
     @comments = @gift.comments
     @tag_list = @gift.tags
+    @customer = current_customer unless current_customer.name == "guestuser"
   end
 
   def edit
@@ -97,6 +110,12 @@ class Public::GiftsController < ApplicationController
 
   def gift_params
     params.require(:gift).permit(:scene_id, :name, :shop_name, :price, :introduction, :gift_image)
+  end
+
+  def is_matching_login_customer
+    @gift = Gift.find(params[:id])
+    @customer = @gift.customer
+    redirect_to (gifts_path) unless @customer == current_customer
   end
 
 end

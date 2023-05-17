@@ -1,4 +1,5 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_customer!
 
   def show
     @gift = Gift.find(params[:id])
