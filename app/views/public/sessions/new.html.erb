@@ -1,5 +1,10 @@
 <div class="container">
-  <div class="row no-gutters">
+
+  <div class= "text-center">
+    <p>「ピン！」とくる贈り物を<br>みんなでシェアしたいコミュニティサイト</p>
+  </div>
+
+  <div class="row">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
 
       <h2 class="text-dark bg-warning py-4 mb-0">Log in</h2>
@@ -22,16 +27,29 @@
           </div>
         <% end %>
 
-        <div class="actions">
+        <div class="actions py-4">
           <%= f.submit "Log in" %>
         </div>
       <% end %>
-
-      <%= render "public/shared/links" %>
-
-      <div class="field">
-        <%= link_to 'ゲストログイン（少し覗いていきませんか？）', guest_sign_in_path, class: 'btn btn-outline-secondary mr-3', method: :post %>
       </div>
+    </div>
+
+    <div class="row">
+  <div class="col-8 text-center">
+    <%= link_to 'ゲストログイン（少し覗いていきませんか？）', guest_sign_in_path, method: :post %>
+  </div>
+  <div class="col-1 text-center">
+    <%= render "public/shared/links" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 text-center mt-3">
+    <div class="mx-auto">
+      <%= link_to 'pinn!とは', about_path, class: 'btn btn-outline-secondary' %>
+    </div>
+  </div>
+</div>
 
     </div>
   </div>
