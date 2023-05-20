@@ -6,7 +6,7 @@ class Admin::ScenesController < ApplicationController
     @scene = Scene.new #シーン新規作成
   end
 
-  def creates
+  def create
     @scene = Scene.new(scene_params) #シーンに送るデータ作成
     @scene.save #シーン保存
     redirect_to admin_scenes_path #シーン一覧に遷移
