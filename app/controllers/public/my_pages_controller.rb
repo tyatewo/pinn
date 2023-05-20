@@ -35,7 +35,7 @@ private
 
 
   def ensure_guest_customer
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
     if @customer.name == "guestuser"
       redirect_to gifts_path , notice: 'ゲストユーザーはプロフィール画面へ遷移できません。'
     end
