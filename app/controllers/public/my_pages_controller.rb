@@ -1,6 +1,6 @@
 class Public::MyPagesController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_guest_customer, except: [:edit, :update]
+  before_action :ensure_guest_customer
 
   def show
     @customer = current_customer
@@ -37,7 +37,7 @@ private
   def ensure_guest_customer
     @customer = Customer.find(params[:id])
     if @customer.name == "guestuser"
-      redirect_to gifts_path , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+      redirect_to gifts_path , notice: 'ゲストユーザーはプロフィール画面へ遷移できません。'
     end
   end
 
