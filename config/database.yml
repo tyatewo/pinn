@@ -20,13 +20,7 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-production:
-  <<: *default
-  database: db/production.sqlite3
-
-
 #データベース（MySQL）へ接続するための設定を記述
-#例：<%= ENV['pinn!'] %>は.envファイルに記述したpinn!に対応しています。
 production:
   <<: *default
   database: <%= ENV['DB_DATABASE'] %>
