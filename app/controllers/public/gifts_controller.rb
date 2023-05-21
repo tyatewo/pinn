@@ -100,8 +100,6 @@ class Public::GiftsController < ApplicationController
   def destroy
     @gift = Gift.find(params[:id])
     @gift.destroy
-    #@bookmark = current_customer.bookmarks.find_by(gift_id: @gift.id)
-    #@bookmark.destroy
     redirect_to gifts_path
   end
 

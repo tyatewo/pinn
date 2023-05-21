@@ -43,7 +43,7 @@
             </div>
 
             <%= f.select :scene_id, @scenes.map { |scene| [scene.name, scene.id] },
-              { include_blank: '選択してください'} %>
+              { include_blank: '利用シーン選択'} %>
           </div>
 
           <div class="input-group mb-3 mt-4">
@@ -55,7 +55,7 @@
 
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
-              <span class="input-group-text" aria-hidden="true"><i class="fas fa-dollar-sign" style="color: #ca76cb;"></i></span>
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-comment" style="color: #ca76cb;"></i></i></span>
             </div>
               <%= f.text_area :introduction, class:"form-control", rows:"3", placeholder:"利用してみた感想" %>
           </div>

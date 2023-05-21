@@ -2,7 +2,7 @@ class Admin::GiftsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @gifts = Gift.page(params[:page]).per(12)
+    @gifts = Gift.page(params[:page]).per(12).order(id: "DESC") ## idの降順
       if params[:search]
         @gifts = Gift.where('name LIKE ?', "%#{params[:search]}%").page(params[:page]).per(12)
       end
@@ -38,29 +38,6 @@ class Admin::GiftsController < ApplicationController
     @gifts = Gift.search(params[:search]) #Viewのformで取得したパラメータをモデルに渡す
   end
 
-
-  # def edit
-  #   @gift = Gift.find(params[:id])
-  #   @tag_list=@gift.tags.pluck(:name).join(',') # pluckはmapと同じ意味
-  #   @scenes = Scene.all
-  # end
-
-  # def update
-  #   @gift = Gift.find(params[:id]) # gift id持ってくる
-  #   tag_list=params[:gift][:name].split(',') # 入力されたタグを受け取る
-  #   if @gift.update(gift_params) # もし更新されたら
-  #       @old_relations=GiftTag.where(gift_id: @gift.id) # gift_idにくっついてるタグを@oldに入れる
-  #       @old_relations.each do |relation| # それぞれ取り出す
-  #       relation.delete # 消す
-  #       end
-  #       @gift.save_tag(tag_list) # gift_idにくっついてるタグを
-  #       redirect_to gift_path(@gift.id)
-  #   else
-  #     @scenes = Scene.all
-  #     render:edit
-  #   end
-  # end
-
   def destroy
     @gift = Gift.find(params[:id])
     @gift.destroy
@@ -68,12 +45,5 @@ class Admin::GiftsController < ApplicationController
     #@bookmark.destroy
     redirect_to admin_gifts_path
   end
-
-
-  # private
-
-  # def gift_params
-  #   params.require(:gift).permit(:scene_id, :name, :shop_name, :price, :introduction, :gift_image)
-  # end
 
 end

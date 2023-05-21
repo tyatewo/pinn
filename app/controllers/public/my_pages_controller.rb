@@ -14,7 +14,7 @@ class Public::MyPagesController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-      redirect_to my_page_path(@customer)
+      redirect_to my_page_path(@customer) , notice: 'プロフィールを更新しました。'
     else
       render :edit
     end

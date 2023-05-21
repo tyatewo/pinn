@@ -34,32 +34,10 @@
       </div>
     </div>
 
-
-
     <div class="col-10 my-4">
       <h2>シェアした贈り物</h2>
-        <% if @gifts.empty? %>
-          <p>まだシェアしていません。</p>
-        <% else %>
-            <% @gifts.each do |gift| %>
-              <div class="col-3 border p-3 text-center">
-                <%= link_to gift_path(gift.id) do %><%# その商品の詳細ページ %>
-                  <% if gift.gift_image.attached? %>
-                    <%= image_tag gift.gift_image, size: "175x175" %> <%# 商品の商品画像 %>
-                  <% else %>
-                    <%= image_tag "about.png", size: "175x175" %>
-                  <% end %>
-                <% end %>
-                  <p class="text-body"><%= gift.name %></p><%# 商品の名前 %>
-                  <p class="text-body"><%= gift.shop_name %></p><%# 店舗の名前 %>
-                  <div id="bookmark-<%= gift.id %>">
-                    <%= render "public/gifts/bookmark", gift: gift %>
-                  </div>
-              </div>
-            <% end %>
-        <% end %>
+        <%= render "public/gifts/post", gifts: @gifts %>
     </div>
-  </div>
 </div>
 
 

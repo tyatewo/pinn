@@ -42,6 +42,13 @@
         </div>
 
         <div class="form-group col-md-4">
+          <lavel for="inputName">タグ</lavel>
+        </div>
+        <div class="col-md-8 content-section">
+          <%= f.text_field :tag_name, autofocus: true, id:"inputName", placeholder:"「,」で区切る" %>
+        </div>
+
+        <div class="form-group col-md-4">
           <lavel for="inputName">利用した感想</lavel>
         </div>
         <div class="col-md-8 content-section">

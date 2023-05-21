@@ -1,6 +1,6 @@
 <div class="card">
   <h7 class="card-title card-header text-center bg-warning text-white">シーン検索</h7>
-  <div class="card-body">
+  <div class="card-body bg-light">
     <% @scenes.each do |scene| %>
       <%= link_to scene.name, admin_gifts_path(scene_id: scene.id), class: 'd-block text-body mb-2' %>
     <% end %>
