@@ -11,7 +11,7 @@
 
           <td><%= comment.body %></td>
               <% if comment.customer == current_customer %>
-                <td><%= link_to "Destroy", gift_comment_path(gift, comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %></td>
+                <td><%= link_to "コメントを削除する", gift_comment_path(gift, comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %></td>
               <% end %>
         </tr>
       <% end %>
