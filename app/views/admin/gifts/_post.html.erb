@@ -8,7 +8,7 @@
               <% if gift.gift_image.attached? %>
                 <%= image_tag gift.gift_image, size: "175x175" %> <%# 商品の商品画像 %>
               <% else %>
-                <%= image_tag "about.png", size: "175x175" %>
+                <%= image_tag "no-image/Gift_no_image.jpg", size: "175x175" %>
               <% end %>
               <% end %>
                 <p class="text-body"><%= gift.name %></p><%# 商品の名前 %>

@@ -46,7 +46,7 @@ class Public::GiftsController < ApplicationController
         @gifts = Scene.find(params[:scene_id]).gifts.page(params[:page]).per(12)
       end
       @scenes = Scene.all
-      @tag_list= Tag.all
+      @tag_list = Tag.all
     #@scene = Scene.find(params[:id])
     #@tag=Tag.find(params[:tag_id]) #検索されたタグを受け取る
   end
@@ -54,9 +54,9 @@ class Public::GiftsController < ApplicationController
   def search_tag
     @gifts = Gift.all
     @gift = Gift.find(params[:gift_id])
-    @tag_list=Tag.all #検索結果画面でもタグ一覧表示
-    @tag=Tag.find(params[:tag_id]) #検索されたタグを受け取る
-    @gift_tags=@tag.gifts.page(params[:page]).per(12) #検索されたタグに紐づく投稿を表示
+    @tag_list = Tag.all #検索結果画面でもタグ一覧表示
+    @tag = Tag.find(params[:tag_id]) #検索されたタグを受け取る
+    @gift_tags = @tag.gifts.page(params[:page]).per(12) #検索されたタグに紐づく投稿を表示
   end
 
 
@@ -75,13 +75,13 @@ class Public::GiftsController < ApplicationController
 
   def edit
     @gift = Gift.find(params[:id])
-    @tag_list=@gift.tags.pluck(:name).join(',') # pluckはmapと同じ意味
+    @tag_list = @gift.tags.pluck(:name).join(',') # pluckはmapと同じ意味
     @scenes = Scene.all
   end
 
   def update
     @gift = Gift.find(params[:id]) # gift id持ってくる
-    tag_list=params[:gift][:name].split(',') # 入力されたタグを受け取る
+    tag_list = params[:gift][:tag_name].split(',') # 入力されたタグを受け取る
     if @gift.update(gift_params) # もし更新されたら
         @old_relations=GiftTag.where(gift_id: @gift.id) # gift_idにくっついてるタグを@oldに入れる
         @old_relations.each do |relation| # それぞれ取り出す

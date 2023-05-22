@@ -6,7 +6,7 @@
           <% if @customer.profile_image.attached? %>
             <%= image_tag @customer.profile_image, size: "300x300" %>
           <% else %>
-            <%= image_tag 'no_image.png', size: "300x300" %>
+            <%= image_tag 'no-image/Customer_no_image.jpg', size: "300x300" %>
           <% end %>
         </tr>
       </table>

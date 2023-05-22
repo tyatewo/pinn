@@ -4,7 +4,7 @@
       <% if @gift.gift_image.attached? %>
         <%= image_tag @gift.gift_image, size: "300x300" %>
       <% else %>
-        <%= image_tag "about.png", size: "300x300" %>
+        <%= image_tag "no-image/Gift_no_image.jpg", size: "300x300" %>
       <% end %>
       <!--商品の商品画像-->
     </div>
