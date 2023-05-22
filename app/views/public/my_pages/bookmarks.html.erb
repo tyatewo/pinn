@@ -8,7 +8,7 @@
           <p>ブックマークした贈り物はありません。</p>
         <% else %>
           <% @bookmarks.each do |bookmark| %>
-            <div class="col-3">
+            <div class="col-3 p-3 text-center shadow-sm">
               <%= link_to gift_path(bookmark.gift.id) do %><%# その商品の詳細ページ %>
                 <% if bookmark.gift.gift_image.attached? %>
                   <%= image_tag bookmark.gift.gift_image, size: "175x175" %> <%# 商品の商品画像 %>
@@ -25,7 +25,7 @@
           <% end %>
         <% end %>
 
-        <div class="col-10">
+        <div class="col-10 my-5">
           <%= link_to 'マイページに戻る', my_page_path(current_customer.id), class: 'btn btn-outline-danger' %>
         </div>
 
