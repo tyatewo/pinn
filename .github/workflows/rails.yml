@@ -2,13 +2,13 @@ name: Rails CI/CD
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/setup-node@v3
+    - uses: actions/checkout@v2
     - name: Deploy
       env:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
