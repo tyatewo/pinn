@@ -5,9 +5,11 @@
         <tr>
           <td>
             <% if comment.customer.profile_image.attached? %>
-              <%= image_tag comment.customer.profile_image, size: "175x175" %>
+              <%= image_tag comment.customer.profile_image, size: "175x175" %><br>
+              <%= comment.customer.name %>
             <% else %>
-              <%= image_tag 'no-image/Customer_no_image.jpg', size: "175x175" %>
+              <%= image_tag 'no-image/Customer_no_image.jpg', size: "175x175" %><br>
+              <%= comment.customer.name %>
             <% end %>
           </td>
 
