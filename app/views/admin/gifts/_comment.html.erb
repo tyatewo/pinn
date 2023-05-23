@@ -10,7 +10,7 @@
 
           <td><%= comment.body %></td>
 
-          <td><%= link_to "Destroy", admin_gift_comment_path(gift, comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %></td>
+          <td><%= link_to "コメントを削除する", admin_gift_comment_path(gift, comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %></td>
 
         </tr>
       <% end %>

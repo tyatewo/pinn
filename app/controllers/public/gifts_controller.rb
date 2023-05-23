@@ -91,7 +91,6 @@ class Public::GiftsController < ApplicationController
         redirect_to gift_path(@gift.id)
     else
         @scenes = Scene.all
-        flash.now[:notice] = '更新しました'
         render:edit
     end
 

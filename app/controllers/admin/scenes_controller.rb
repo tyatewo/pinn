@@ -8,8 +8,12 @@ class Admin::ScenesController < ApplicationController
 
   def create
     @scene = Scene.new(scene_params) #シーンに送るデータ作成
-    @scene.save #シーン保存
-    redirect_to admin_scenes_path #シーン一覧に遷移
+    if @scene.save #シーン保存
+       redirect_to admin_scenes_path, notice: 'シーンを追加しました。' #シーン一覧に遷移
+    else
+       @scenes = Scene.all
+       render :index
+    end
   end
 
   def edit
@@ -17,9 +21,12 @@ class Admin::ScenesController < ApplicationController
   end
 
   def update
-    scene = Scene.find(params[:id]) #固有のシーンを探す
-    scene.update(scene_params) #シーンの更新
-    redirect_to admin_scenes_path #シーン一覧
+    @scene = Scene.find(params[:id]) #固有のシーンを探す
+    if @scene.update(scene_params) #シーンの更新
+       redirect_to admin_scenes_path, notice: 'シーンを更新しました。' #シーン一覧
+    else
+       render :edit
+    end
   end
 
   private

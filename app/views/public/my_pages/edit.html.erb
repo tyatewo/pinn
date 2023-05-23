@@ -1,5 +1,9 @@
 <div class="container">
   <h2>マイページ編集</h2>
+    <div>
+      <%= render "error", customer: @customer %>
+    </div>
+
     <%= form_with model: @customer, url: my_page_path, method: :patch do |f| %>
       <div class="row">
         <div class= "form-group col-md-3">

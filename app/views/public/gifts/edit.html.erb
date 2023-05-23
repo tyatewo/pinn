@@ -1,9 +1,12 @@
 <div class="container">
-  <div class="row no-gutters">
-    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-      <h5 class="text-dark bg-light p-4 mb-0 text-center">贈り物情報編集</h5>
+  <div class="row">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto px-0 my-5">
+      <h5 class="text-dark p-4 mb-0">贈り物情報編集</h5>
+
+      <%= render "error", gift: @gift %>
+
       <div class="form-body p-4">
-    <%= form_with model: @gift, url: gift_path(@gift.id) do |f| %>
+        <%= form_with model: @gift, url: gift_path(@gift.id) do |f| %>
       <div class="row">
         <div class="form-group col-md-4">
           <lavel for="inputName">商品画像</lavel>

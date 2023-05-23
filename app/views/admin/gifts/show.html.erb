@@ -76,7 +76,7 @@
 
     <div class = "col-12 my-2">
       <%# if @gift.customer_id == current_customer %>
-        <%= link_to "削除", admin_gift_path(@gift.id), method: :delete, "data-confirm"=> "本当に消しますか？", class:"btn btn-outline-danger" %>
+        <%= link_to "投稿を削除する", admin_gift_path(@gift.id), method: :delete, "data-confirm"=> "本当に消しますか？", class:"btn btn-outline-danger" %>
       <%# end %>
     </div>
 
