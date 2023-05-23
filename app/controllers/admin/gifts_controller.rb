@@ -14,6 +14,15 @@ class Admin::GiftsController < ApplicationController
       if params[:scene_id]
         @gifts = Scene.find(params[:scene_id]).gifts.page(params[:page]).per(12)
       end
+
+      # if params[:latest]
+      #   @gifts = Gift.latest
+      # elsif params[:old]
+      #   @gifts = Gift.old
+      # elsif params[:bookmark_count]
+      #   @gifts = Gift.star_count
+      # end
+
       @scenes = Scene.all
       @tag_list = Tag.all
   end

@@ -14,6 +14,12 @@ class Gift < ApplicationRecord
   belongs_to :customer
   belongs_to :scene
 
+
+  # scope :latest, -> {order(created_at: :desc)}
+  # scope :old, -> {order(created_at: :asc)}
+  # scope :bookmark_count, -> {order(bookmark: :desc)}
+
+
   def save_tag(sent_tags)
     # unless=タグそのものが存在しているか？を確認
     # pluck=カラムの中身を展開してくれる
