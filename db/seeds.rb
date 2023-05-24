@@ -37,56 +37,78 @@ Scene.create(
 )
 
 
-GIft.create(
+Gift.create(
    [
-      {gift_id: 1, customer_id: 1, scene_id: 1, name: '苺ケーキ', shop_name: 'ながのCAKE', price: 1000, tag_name: 'ケーキ,ながのCAKE', introduction: '喜んでもらえた',
+       #TODO:　tag_nameを消す
+
+      {id: 1, customer_id: 1, scene_id: 1, name: '苺ケーキ', shop_name: 'ながのCAKE', price: 1000, tag_name: 'ケーキ,ながのCAKE', introduction: '喜んでもらえた',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/itigocake.jpg"))},
-      {gift_id: 2, customer_id: 1, scene_id: 2, name: '日本酒', shop_name: '定〇渓商店', price: 2000, tag_name: 'お酒', introduction: 'とても良かった',
+      {id: 2, customer_id: 1, scene_id: 2, name: '日本酒', shop_name: '定〇渓商店', price: 2000, tag_name: 'お酒', introduction: 'とても良かった',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/nihonsyu.jpg"))},
-      {gift_id: 3, customer_id: 2, scene_id: 3, name: 'お出汁', shop_name: '久〇福商店', price: 1500, tag_name: '出汁', introduction: '喜んでもらえた',
+      {id: 3, customer_id: 2, scene_id: 3, name: 'お出汁', shop_name: '久〇福商店', price: 1500, tag_name: '出汁', introduction: '喜んでもらえた',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/dasi.jpg"))},
-      {gift_id: 4, customer_id: 2, scene_id: 4, name: 'ディフューザー', shop_name: 'ギフトショップ', price: 1300, tag_name: 'ディフューザー', introduction: 'とてもよかった',
+      {id: 4, customer_id: 2, scene_id: 4, name: 'ディフューザー', shop_name: 'ギフトショップ', price: 1300, tag_name: 'ディフューザー', introduction: 'とてもよかった',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/diffuser.jpg"))},
-      {gift_id: 5, customer_id: 3, scene_id: 5, name: '香水', shop_name: 'Shir〇', price: 4000, tag_name: '香水', introduction: '喜んでもらえた',
+      {id: 5, customer_id: 3, scene_id: 5, name: '香水', shop_name: 'Shir〇', price: 4000, tag_name: '香水', introduction: '喜んでもらえた',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/kousui.jpg"))},
-      {gift_id: 6, customer_id: 3, scene_id: 6, name: '石鹸', shop_name: 'L〇SH', price: 700, tag_name: '石鹸', introduction: '良かった',
+      {id: 6, customer_id: 3, scene_id: 6, name: '石鹸', shop_name: 'L〇SH', price: 700, tag_name: '石鹸', introduction: '良かった',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/sekkenn.jeg"))},
-      {gift_id: 7, customer_id: 4, scene_id: 1, name: 'ドライフラワー', shop_name: 'フラワーショップ', price: 1300, tag_name: '花', introduction: 'とても良かった',
+      {id: 7, customer_id: 4, scene_id: 1, name: 'ドライフラワー', shop_name: 'フラワーショップ', price: 1300, tag_name: '花', introduction: 'とても良かった',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/hana.jpg"))},
-      {gift_id: 8, customer_id: 4, scene_id: 2, name: 'ココアケーキ', shop_name: 'ながのCAKE', price: 700, tag_name: 'ケーキ,ながのCAKE', introduction: '喜んでもらえた',
+      {id: 8, customer_id: 4, scene_id: 2, name: 'ココアケーキ', shop_name: 'ながのCAKE', price: 700, tag_name: 'ケーキ,ながのCAKE', introduction: '喜んでもらえた',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/cocoacake.jpg"))},
-      {gift_id: 9, customer_id: 5, scene_id: 3, name: 'チョコレート', shop_name: '〇〇製菓', price: 1300, tag_name: 'チョコレート', introduction: '喜んでもらえた',
+      {id: 9, customer_id: 5, scene_id: 3, name: 'チョコレート', shop_name: '〇〇製菓', price: 1300, tag_name: 'チョコレート', introduction: '喜んでもらえた',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/choco.jpg"))},
-      {gift_id: 10, customer_id: 5, scene_id: 4, name: 'プリン', shop_name: 'ながのCAKE', price: 300, tag_name: 'プリン,ながのCAKE', introduction: '喜んでもらえた',
+      {id: 10, customer_id: 5, scene_id: 4, name: 'プリン', shop_name: 'ながのCAKE', price: 300, tag_name: 'プリン,ながのCAKE', introduction: '喜んでもらえた',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/purin.jpg"))},
-      {gift_id: 11, customer_id: 5, scene_id: 5, name: 'クッキー', shop_name: 'ながのCAKE', price: 300, tag_name: 'クッキー,ながのCAKE', introduction: '喜んでもらえた',
+      {id: 11, customer_id: 5, scene_id: 5, name: 'クッキー', shop_name: 'ながのCAKE', price: 300, tag_name: 'クッキー,ながのCAKE', introduction: '喜んでもらえた',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/cookie.jpg"))},
-      {gift_id: 12, customer_id: 5, scene_id: 6, name: 'ハーバリウム', shop_name: 'ギフトショップ', price: 700, tag_name: '花', introduction: '良かった',
+      {id: 12, customer_id: 5, scene_id: 6, name: 'ハーバリウム', shop_name: 'ギフトショップ', price: 700, tag_name: '花', introduction: '良かった',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/herbarium.jpg"))},
-      {gift_id: 13, customer_id: 5, scene_id: 1, name: 'カボチャムース', shop_name: '〇〇製菓', price: 300, tag_name: 'かぼちゃ', introduction: '良かった',
+      {id: 13, customer_id: 5, scene_id: 1, name: 'カボチャムース', shop_name: '〇〇製菓', price: 300, tag_name: 'かぼちゃ', introduction: '良かった',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/kabotya.jpg"))},
-      {gift_id: 14, customer_id: 5, scene_id: 1, name: 'ミックスナッツ', shop_name: '〇〇製菓', price: 300, tag_name: 'ナッツ', introduction: '喜んでもらえた',
+      {id: 14, customer_id: 5, scene_id: 1, name: 'ミックスナッツ', shop_name: '〇〇製菓', price: 300, tag_name: 'ナッツ', introduction: '喜んでもらえた',
                profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/gifts/nattu.jpg"))},
    ]
 )
 
+## TODO: Tagのseedをつくる
+Tag.create!(
+   [
+      {id: 1, name: 'ケーキ'},
+      {id: 2, name: 'ながのCAKE'},
+      {id: 3, name: 'お酒'},
+   ]
+)
+
+GiftTag.create!(
+   [
+      {id: 1, tag_id: 1, gift_id: 1},
+      {id: 2, tag_id: 2, gift_id: 1},
+      {id: 3, tag_id: 3, gift_id: 2},
+
+   ]
+)
+
+
+
 
 Comment.create(
    [
-      {customer_id: 1, gift_id: 14, body: 'いいですね'},
-      {customer_id: 1, gift_id: 13, body: 'いいですね'},
-      {customer_id: 2, gift_id: 12, body: '参考にします'},
-      {customer_id: 2, gift_id: 11, body: '参考にします'},
-      {customer_id: 3, gift_id: 10, body: 'すてきですね'},
-      {customer_id: 3, gift_id: 9, body: 'すてきですね'},
-      {customer_id: 4, gift_id: 8, body: 'いいですね'},
-      {customer_id: 4, gift_id: 7, body: 'いいですね'},
-      {customer_id: 5, gift_id: 6, body: '使ってみます'},
-      {customer_id: 5, gift_id: 5, body: '使ってみます'},
-      {customer_id: 6, gift_id: 4, body: 'いいですね'},
-      {customer_id: 6, gift_id: 3, body: 'いいですね'},
-      {customer_id: 6, gift_id: 2, body: '参考にします'},
-      {customer_id: 6, gift_id: 1, body: '参考にします'},
+      {id:1, customer_id: 1, gift_id: 14, body: 'いいですね'},
+      {id:2, customer_id: 1, gift_id: 13, body: 'いいですね'},
+      {id:3, customer_id: 2, gift_id: 12, body: '参考にします'},
+      {id:4, customer_id: 2, gift_id: 11, body: '参考にします'},
+      {id:5, customer_id: 3, gift_id: 10, body: 'すてきですね'},
+      {id:6, customer_id: 3, gift_id: 9, body: 'すてきですね'},
+      {id:7, customer_id: 4, gift_id: 8, body: 'いいですね'},
+      {id:8, customer_id: 4, gift_id: 7, body: 'いいですね'},
+      {id:9, customer_id: 5, gift_id: 6, body: '使ってみます'},
+      {id:10, customer_id: 5, gift_id: 5, body: '使ってみます'},
+      {id:11, customer_id: 6, gift_id: 4, body: 'いいですね'},
+      {id:12, customer_id: 6, gift_id: 3, body: 'いいですね'},
+      {id:13, customer_id: 6, gift_id: 2, body: '参考にします'},
+      {id:14, customer_id: 6, gift_id: 1, body: '参考にします'},
 
    ]
 )
@@ -94,22 +116,22 @@ Comment.create(
 
 Bookmark.create(
    [
-      {customer_id: 1, gift_id: 14},
-      {customer_id: 1, gift_id: 12},
-      {customer_id: 1, gift_id: 10},
-      {customer_id: 3, gift_id: 8},
-      {customer_id: 3, gift_id: 6},
-      {customer_id: 3, gift_id: 4},
-      {customer_id: 5, gift_id: 2},
-      {customer_id: 5, gift_id: 13},
-      {customer_id: 5, gift_id: 11},
-      {customer_id: 6, gift_id: 9},
-      {customer_id: 6, gift_id: 7},
-      {customer_id: 6, gift_id: 5},
-      {customer_id: 6, gift_id: 3},
-      {customer_id: 2, gift_id: 6},
-      {customer_id: 2, gift_id: 7},
-      {customer_id: 4, gift_id: 8},
-      {customer_id: 4, gift_id: 9},
+      {id:1, customer_id: 1, gift_id: 8},
+      {id:2, customer_id: 1, gift_id: 12},
+      {id:3, customer_id: 1, gift_id: 10},
+      {id:4, customer_id: 3, gift_id: 8},
+      {id:5, customer_id: 3, gift_id: 6},
+      {id:6, customer_id: 3, gift_id: 4},
+      {id:7, customer_id: 5, gift_id: 2},
+      {id:8, customer_id: 5, gift_id: 13},
+      {id:9, customer_id: 5, gift_id: 8},
+      {id:10, customer_id: 6, gift_id: 9},
+      {id:11, customer_id: 6, gift_id: 7},
+      {id:12, customer_id: 6, gift_id: 5},
+      {id:13, customer_id: 6, gift_id: 3},
+      {id:14, customer_id: 2, gift_id: 6},
+      {id:15, customer_id: 2, gift_id: 7},
+      {id:16, customer_id: 4, gift_id: 8},
+      {id:17, customer_id: 4, gift_id: 9},
    ]
 )
