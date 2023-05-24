@@ -46,9 +46,13 @@
         <% end %>
       </h6>
 
-      <div id= "bookmark-<%= @gift.id %>">
-        <%= render 'bookmark', gift: @gift %>
-      </div>
+      <% if @customer == current_customer %>
+        <div id= "bookmark-<%= @gift.id %>">
+          <%= render 'bookmark', gift: @gift %>
+        </div>
+      <% else %>
+        <div><i class="far fa-bookmark" style="color: #d2772d;"></i><%= @gift.bookmarks.count %></div>
+      <% end %>
 
       <div class = "my-2">
         <%= link_to "贈り物一覧に戻る", gifts_path, class: 'btn btn-secondary' %>

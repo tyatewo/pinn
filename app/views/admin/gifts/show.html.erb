@@ -46,9 +46,7 @@
         <% end %>
       </h6>
 
-      <div id= "bookmark-<%= @gift.id %>">
-        <%= render 'bookmark', gift: @gift %>
-      </div>
+      <div>♡<%= @gift.bookmarks.count %></div>
 
       <div class = "my-2">
         <%= link_to "贈り物一覧に戻る", admin_gifts_path, class: 'btn btn-secondary' %>

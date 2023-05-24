@@ -2,26 +2,21 @@ class Admin::GiftsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @gifts = Gift.page(params[:page]).per(12).order(id: "DESC") ## idの降順
-      if params[:search]
-        @gifts = Gift.where('name LIKE ?', "%#{params[:search]}%").page(params[:page]).per(12)
-      end
-
-      if params[:tag_id]
-        @gifts = Tag.find(params[:tag_id]).gifts.page(params[:page]).per(12)
-      end
-
-      if params[:scene_id]
-        @gifts = Scene.find(params[:scene_id]).gifts.page(params[:page]).per(12)
-      end
-
-      # if params[:latest]
-      #   @gifts = Gift.latest
-      # elsif params[:old]
-      #   @gifts = Gift.old
-      # elsif params[:bookmark_count]
-      #   @gifts = Gift.star_count
-      # end
+    if params[:search]
+      @gifts = Gift.where('name LIKE ?', "%#{params[:search]}%").page(params[:page]).per(12)
+    elsif params[:tag_id]
+      @gifts = Tag.find(params[:tag_id]).gifts.page(params[:page]).per(12)
+    elsif params[:scene_id]
+      @gifts = Scene.find(params[:scene_id]).gifts.page(params[:page]).per(12)
+    elsif params[:latest]
+      @gifts = Gift.latest.page(params[:page]).per(12)
+    elsif params[:old]
+      @gifts = Gift.old.page(params[:page]).per(12)
+    elsif params[:bookmark_count]
+      @gifts = Gift.bookmark_count.page(params[:page]).per(12)
+    else
+      @gifts = Gift.order(id: "DESC").page(params[:page]).per(12)
+    end
 
       @scenes = Scene.all
       @tag_list = Tag.all

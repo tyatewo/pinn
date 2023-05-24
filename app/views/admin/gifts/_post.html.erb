@@ -13,9 +13,7 @@
               <% end %>
                 <p class="text-body"><%= gift.name %></p><%# 商品の名前 %>
                 <p class="text-body"><%= gift.shop_name %></p><%# 店舗の名前 %>
-              <div id="bookmark-<%= gift.id %>">
-                <%= render "admin/gifts/bookmark", gift: gift %>
-              </div>
+                <p class="text-body">♡<%= gift.bookmarks.count %></p>
             </div>
           <% end %>
         <% end %>

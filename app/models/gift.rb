@@ -15,9 +15,9 @@ class Gift < ApplicationRecord
   belongs_to :scene
 
 
-  # scope :latest, -> {order(created_at: :desc)}
-  # scope :old, -> {order(created_at: :asc)}
-  # scope :bookmark_count, -> {order(bookmark: :desc)}
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :bookmark_count, -> {left_joins(:bookmarks).order(gift_id: :desc)}
 
 
   def save_tag(sent_tags)

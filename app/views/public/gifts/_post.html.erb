@@ -13,9 +13,13 @@
         <% end %>
           <p class="text-body"><%= gift.name %></p><%# 商品の名前 %>
           <p class="text-body"><%= gift.shop_name %></p><%# 店舗の名前 %>
-        <div id="bookmark-<%= gift.id %>">
-          <%= render "public/gifts/bookmark", gift: gift %>
-        </div>
+        <% if current_customer && current_customer.name != "guestuser" %>
+          <div id="bookmark-<%= gift.id %>">
+            <%= render "public/gifts/bookmark", gift: gift %>
+          </div>
+        <% else %>
+          <p class="text-body"><i class="far fa-bookmark" style="color: #d2772d;"></i><%= gift.bookmarks.count %></p>
+        <% end %>
       </div>
     <% end %>
   <% end %>

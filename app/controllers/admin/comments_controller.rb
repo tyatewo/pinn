@@ -7,18 +7,6 @@ class Admin::CommentsController < ApplicationController
     @comment = Comment.new
   end
 
-  def create
-    @comment = Comment.new(post_params)
-    @comment.customer_id = current_customer.id
-    @comment.gift_id = params[:gift_id]
-    if @comment.save
-      redirect_to request.referer
-    else
-      @gift = Gift.find(params[:gift_id])
-      @comments = @gift.comments
-      render gift_path(@gift)
-    end
-  end
 
   def destroy
     # @comment = Comment.new(post_params)
