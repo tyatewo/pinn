@@ -14,17 +14,17 @@ Admin.create!(
 
 Customer.create!(
    [
-      {email: 'pen@gin', password: 'pengin', name: 'ペンギン', profile: 'ペンギンです。よろしくおねがいしま！', id: '1',
+      {email: 'pen@gin', password: 'pengin', name: 'ペンギン', profile: 'ペンギンです。よろしくおねがいしま！', id: 1,
          profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/customers/pengin-user.jpg"), filename:"pengin-user.jpg")},
-      {email: 'kame@kiti', password: 'kamekiti', name: 'かめきち', profile: 'かめきちです。よろしくおねがいします！', id: '2',
+      {email: 'kame@kiti', password: 'kamekiti', name: 'かめきち', profile: 'かめきちです。よろしくおねがいします！', id: 2,
          profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/customers/kamekiti-user.jpg"), filename:"hiyoko-user.jpg")},
-      {email: 'hiyoko@hiyoko', password: 'hiyoko', name: 'ひよこ', profile: 'ひよこです。よろしくおねがいします！', id: '3',
+      {email: 'hiyoko@hiyoko', password: 'hiyoko', name: 'ひよこ', profile: 'ひよこです。よろしくおねがいします！', id: 3,
          profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/customers/hiyoko-user.jpg"), filename:"hiyoko-user.jpg")},
-      {email: 'tya@tya', password: 'tyatya', name: 'ちゃー', profile: 'ちゃーです。よろしくおねがいします！', id: '4',
+      {email: 'tya@tya', password: 'tyatya', name: 'ちゃー', profile: 'ちゃーです。よろしくおねがいします！', id: 4,
          profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/customers/tya-user.jpg"), filename:"tya-user.jpg")},
-      {email: 'nin@zin', password: 'ninzin', name: 'にんじん', profile: 'にんじんです。よろしくおねがいします！', id: '5',
+      {email: 'nin@zin', password: 'ninzin', name: 'にんじん', profile: 'にんじんです。よろしくおねがいします！', id: 5,
          profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/customers/ninzin-user.jpg"), filename:"ninzin-user.jpg")},
-      {email: 'rasu@karu', password: 'rasukaru', name: 'らすかる', profile: 'らすかるです。よろしくおねがいします！', id: '6',
+      {email: 'rasu@karu', password: 'rasukaru', name: 'らすかる', profile: 'らすかるです。よろしくおねがいします！', id: 6,
          profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/customers/rasukaru-user.jpg"), filename:"rasukaru-user.jpg")},
    ]
 )
@@ -102,12 +102,12 @@ GiftTag.create!(
       {id: 10, tag_id: 2, gift_id: 8},
       {id: 11, tag_id: 9, gift_id: 9},
       {id: 12, tag_id: 2, gift_id: 10},
-      {id: 12, tag_id: 10, gift_id: 10},
-      {id: 13, tag_id: 2, gift_id: 11},
-      {id: 13, tag_id: 11, gift_id: 11},
-      {id: 14, tag_id: 8, gift_id: 12},
-      {id: 15, tag_id: 1, gift_id: 13},
-      {id: 16, tag_id: 12, gift_id: 14},
+      {id: 13, tag_id: 10, gift_id: 10},
+      {id: 14, tag_id: 2, gift_id: 11},
+      {id: 15, tag_id: 11, gift_id: 11},
+      {id: 16, tag_id: 8, gift_id: 12},
+      {id: 17, tag_id: 1, gift_id: 13},
+      {id: 18, tag_id: 12, gift_id: 14},
 
    ]
 )
