@@ -22,18 +22,17 @@ class Public::GiftsController < ApplicationController
       @tag_list = params[:gift][:tag_name].split(',')
         if @gift.save
            @gift.save_tag(@tag_list)
+           flash[:notice] = "投稿が完了しました。"
            redirect_to gifts_path
         else
           @scenes = Scene.all
           render :new
         end
-      @bookmark = current_customer.bookmarks.new(gift_id: @gift.id)
-      @bookmark.save
     end
   end
 
   def index
-    # @gifts = Gift.page(params[:page]).per(12).order(id: "DESC") ## idの降順
+
     if params[:search]
       @gifts = Gift.where('name LIKE ?', "%#{params[:search]}%").page(params[:page]).per(12)
     elsif params[:tag_id]
@@ -45,7 +44,8 @@ class Public::GiftsController < ApplicationController
     elsif params[:old]
       @gifts = Gift.old.page(params[:page]).per(12)
     elsif params[:bookmark_count]
-      @gifts = Gift.bookmark_count.page(params[:page]).per(12)
+       @gifts = Gift.includes(:bookmarks).sort {|a,b| b.bookmarks.size <=> a.bookmarks.size}
+       @gifts = Kaminari.paginate_array(@gifts).page(params[:page]).per(12)
     else
       @gifts = Gift.order(id: "DESC").page(params[:page]).per(12)
     end
@@ -92,6 +92,7 @@ class Public::GiftsController < ApplicationController
           relation.delete # 消す
         end
         @gift.save_tag(tag_list) # gift_idにくっついてるタグを
+        flash[:notice] = "編集が完了しました。"
         redirect_to gift_path(@gift.id)
     else
         @scenes = Scene.all
@@ -103,6 +104,7 @@ class Public::GiftsController < ApplicationController
   def destroy
     @gift = Gift.find(params[:id])
     @gift.destroy
+    flash[:notice] = "削除が完了しました。"
     redirect_to gifts_path
   end
 

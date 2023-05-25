@@ -13,6 +13,7 @@ class Admin::CommentsController < ApplicationController
     #@gift = Gift.find(params[:gift_id])
     Comment.find(params[:id]).destroy
     @gift = Gift.find(params[:gift_id])
+    flash[:notice] = "削除が完了しました。"
     # @gift = Gift.find(params[:gift_id])
     # @comments = @gift.comments
     # @comment = current_customer.comments.find_by(gift_id: @gift.id)

@@ -13,7 +13,8 @@ class Admin::GiftsController < ApplicationController
     elsif params[:old]
       @gifts = Gift.old.page(params[:page]).per(12)
     elsif params[:bookmark_count]
-      @gifts = Gift.bookmark_count.page(params[:page]).per(12)
+      @gifts = Gift.includes(:bookmarks).sort {|a,b| b.bookmarks.size <=> a.bookmarks.size}
+      @gifts = Kaminari.paginate_array(@gifts).page(params[:page]).per(12)
     else
       @gifts = Gift.order(id: "DESC").page(params[:page]).per(12)
     end
@@ -45,8 +46,7 @@ class Admin::GiftsController < ApplicationController
   def destroy
     @gift = Gift.find(params[:id])
     @gift.destroy
-    #@bookmark = current_customer.bookmarks.find_by(gift_id: @gift.id)
-    #@bookmark.destroy
+    flash[:notice] = "削除が完了しました。"
     redirect_to admin_gifts_path
   end
 
