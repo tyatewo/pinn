@@ -1,0 +1,8 @@
+<% if gift.errors.any? %>
+  <%= gift.errors.count %>件のエラーが発生しました
+  <ul>
+    <% gift.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,0 +1,23 @@
+<table>
+  <thead><h2>コメント</h2></thead>
+    <tbody>
+      <% gift.comments.each do |comment| %>
+        <tr>
+          <td>
+            <% if comment.customer.profile_image.attached? %>
+              <%= image_tag comment.customer.profile_image, size: "175x175" %><br>
+              <%= comment.customer.name %>
+            <% else %>
+              <%= image_tag 'no-image/Customer_no_image.jpg', size: "175x175" %><br>
+              <%= comment.customer.name %>
+            <% end %>
+          </td>
+
+          <td><%= comment.body %></td>
+
+          <td><%= link_to "コメントを削除する", admin_gift_comment_path(gift, comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %></td>
+
+        </tr>
+      <% end %>
+    </tbody>
+</table>

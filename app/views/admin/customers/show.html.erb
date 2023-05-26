@@ -1,0 +1,50 @@
+<div class= "container px-5 px-sm-0">
+  <div class= "row">
+    <div class= "col-md-4">
+      <table class= "table">
+        <tr>
+          <% if @customer.profile_image.attached? %>
+            <%= image_tag @customer.profile_image, size: "300x300" %>
+          <% else %>
+            <%= image_tag 'no-image/Customer_no_image.jpg', size: "300x300" %>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+
+    <div class= "col-md-7 offset-md-1">
+      <div class="col-6">
+        <div class="form-group">
+          <lavel for="inputName">ユーザーネーム</lavel>
+          <div class="content-section">
+            <h3><strong><%= @customer.name %></strong></h3>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <lavel for="inputName">プロフィール</lavel>
+          <div class="content-section">
+            <h5><strong><%= @customer.profile %></strong></h5>
+          </div>
+        </div>
+
+        <%= link_to "退会させる", admin_customer_withdrawal_path(@customer.id), method: :patch, class: 'btn btn-danger' %>
+      </div>
+    </div>
+
+
+
+    <div class="col-10">
+      <h2>シェアした贈り物</h2>
+        <%= render "admin/gifts/post", gifts: @gifts %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+

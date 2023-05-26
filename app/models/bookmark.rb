@@ -1,6 +1,6 @@
 class Bookmark < ApplicationRecord
 
-  has_many :gifs, dependent: :destroy
-  has_many :customers, dependent: :destroy
+  belongs_to :gift
+  belongs_to :customer
 
 end

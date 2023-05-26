@@ -1,0 +1,85 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-6">
+      <% if @gift.gift_image.attached? %>
+        <%= image_tag @gift.gift_image, size: "300x300" %>
+      <% else %>
+        <%= image_tag "no-image/Gift_no_image.jpg", size: "300x300" %>
+      <% end %>
+      <!--商品の商品画像-->
+    </div>
+
+    <div class="col-6">
+      <div class="form-group">
+        <lavel for="inputName">商品名</lavel>
+        <div class="content-section">
+          <h3><strong><%= @gift.name %></strong></h3>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <lavel for="inputName">店舗名</lavel>
+        <div class="content-section">
+           <h5 class="mt-3"><strong><%= @gift.shop_name %></strong></h5>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <lavel for="inputName">料金</lavel>
+        <div class="content-section">
+          <h4><strong>¥<%= number_with_delimiter((@gift.price), delimiter: ',') %></strong><small class="text-small">（税込）</small></h4>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <lavel for="inputName">利用シーン</lavel>
+          <div class="content-section">
+          <h6 class="mt-3"><strong><%= @gift.scene.name %></strong></h6>
+        </div>
+      </div>
+
+      <h6 class="mt-3">
+        <% @tag_list.each do |list| %>
+          <i class="fas fa-tag"></i>
+          <%=list.name %>
+          <%="(#{list.gifts.count})" %>
+        <% end %>
+      </h6>
+
+      <div>♡<%= @gift.bookmarks.count %></div>
+
+      <div class = "my-2">
+        <%= link_to "贈り物一覧に戻る", admin_gifts_path, class: 'btn btn-secondary' %>
+      </div>
+
+    </div>
+
+    <div class = "col-12 my-4">
+      <table>
+        <h2>利用した感想</h2>
+          <tr>
+            <td>
+              <% if @gift.customer.profile_image.attached? %>
+                <%= image_tag @gift.customer.profile_image, size: "100x100" %><br>
+                <%= @gift.customer.name %>
+              <% else %>
+                <%= image_tag 'no-image/Customer_no_image.jpg', size: "175x175" %><br>
+              <% end %>
+            </td>
+
+            <td><%= @gift.introduction %></td>
+          </tr>
+      </table>
+    </div>
+
+    <div class = "col-12 my-2">
+      <%# if @gift.customer_id == current_customer %>
+        <%= link_to "投稿を削除する", admin_gift_path(@gift.id), method: :delete, "data-confirm"=> "本当に消しますか？", class:"btn btn-outline-danger" %>
+      <%# end %>
+    </div>
+
+    <div class = "col-12 my-5" id="comments">
+      <%= render 'comment', gift: @gift %>
+    </div>
+  </div>
+</div>

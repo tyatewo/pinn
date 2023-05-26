@@ -1,6 +1,6 @@
 class Comment < ApplicationRecord
 
-  has_many :gifts, dependent: :destroy
-  has_many :customers, dependent: :destroy
+  belongs_to :gift
+  belongs_to :customer
 
 end

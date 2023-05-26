@@ -1,0 +1,29 @@
+<%= form_with model: [gift, comment], local: false do |f| %>
+<table>
+  <thead><h2>コメント</h2><thead>
+    <tbody>
+      <% gift.comments.each do |comment| %>
+        <tr>
+          <td>
+            <% if comment.customer.profile_image.attached? %>
+              <%= image_tag comment.customer.profile_image, size: "175x175" %><br>
+              <%= comment.customer.name %>
+            <% else %>
+              <%= image_tag 'no-image/Customer_no_image.jpg', size: "175x175" %><br>
+              <%= comment.customer.name %>
+            <% end %>
+          </td>
+
+          <td><%= comment.body %></td>
+              <% if comment.customer == current_customer %>
+                <td><%= link_to "コメントを削除する", gift_comment_path(gift, comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %></td>
+              <% end %>
+        </tr>
+      <% end %>
+        <tr>
+          <td><%= f.text_area :body, class: 'form-control', rows: 4 %></td>
+          <td><%= f.submit 'コメントする', class:"btn btn-lg btn-block btn-info mt-4" %></td>
+        <tr>
+   </tbody>
+</table>
+<% end %>

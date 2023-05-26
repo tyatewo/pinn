@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto px-0 my-5">
+      <h5 class="text-dark p-4 mb-0">贈り物情報編集</h5>
+
+      <%= render "error", gift: @gift %>
+
+      <div class="form-body p-4">
+        <%= form_with model: @gift, url: gift_path(@gift.id) do |f| %>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <lavel for="inputName">商品画像</lavel>
+        </div>
+        <div class="col-md-8 content-section">
+          <%= f.file_field :gift_image, accept: "image/*", class: "w-100" %>
+        </div>
+
+        <div class="form-group col-md-4">
+          <lavel for="inputName">商品名</lavel>
+        </div>
+        <div class="col-md-8 content-section">
+          <%= f.text_field :name, autofocus: true, id:"inputName" %>
+      　</div>
+
+        <div class="form-group col-md-4">
+          <lavel for="inputName">店舗名</lavel>
+        </div>
+        <div class="col-md-8 content-section">
+          <%= f.text_field :shop_name, autofocus: true, id:"inputName" %>
+        </div>
+
+        <div class="form-group col-md-4">
+          <lavel for="inputName">料金</lavel>
+        </div>
+        <div class="col-md-8 content-section">
+          <%= f.text_field :price, autofocus: true, id:"inputName", placeholder:"税込料金（数字のみ入力（円や,は不要））" %>
+        </div>
+
+        <div class="form-group col-md-4">
+          <lavel for="inputName">シーン</lavel>
+        </div>
+        <div class="col-md-8 content-section">
+          <%= f.select :scene_id, @scenes.map { |scene| [scene.name, scene.id] },
+                  { include_blank: '選択してください'} %>
+        </div>
+
+        <div class="form-group col-md-4">
+          <lavel for="inputName">タグ</lavel>
+        </div>
+        <div class="col-md-8 content-section">
+          <%= f.text_field :tag_name, autofocus: true, id:"inputName", placeholder:"「,」で区切る" %>
+        </div>
+
+        <div class="form-group col-md-4">
+          <lavel for="inputName">利用した感想</lavel>
+        </div>
+        <div class="col-md-8 content-section">
+          <%= f.text_area :introduction, autofocus: true, id:"inputName" %>
+        </div>
+
+        <div class="col-md-12 d-flex justify-content-center">
+          <%= f.submit '保存', class: 'btn btn-outline-success' %>
+        </div>
+    <% end %>

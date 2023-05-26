@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <h4>ブックマーク一覧</h4>
+      <div class="row">
+
+        <% if @bookmarks.empty? %>
+          <p>ブックマークした贈り物はありません。</p>
+        <% else %>
+          <% @bookmarks.each do |bookmark| %>
+            <div class="col-3 p-3 text-center shadow-sm">
+              <%= link_to gift_path(bookmark.gift.id) do %><%# その商品の詳細ページ %>
+                <% if bookmark.gift.gift_image.attached? %>
+                  <%= image_tag bookmark.gift.gift_image, size: "175x175" %> <%# 商品の商品画像 %>
+                <% else %>
+                  <%= image_tag "about.png", size: "175x175" %>
+                <% end %>
+              <% end %>
+                <p class="text-body"><%= bookmark.gift.name %></p><%# 商品の名前 %>
+                <p class="text-body"><%= bookmark.gift.shop_name %></p><%# 店舗の名前 %>
+                <div id="bookmark-<%= bookmark.gift.id %>">
+                  <%= render "public/gifts/bookmark", gift: bookmark.gift %>
+                </div>
+            </div>
+          <% end %>
+        <% end %>
+
+        <div class="col-10 my-5">
+          <%= link_to 'マイページに戻る', my_page_path(current_customer.id), class: 'btn btn-outline-danger' %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

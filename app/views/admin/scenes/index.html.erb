@@ -1,0 +1,31 @@
+<div class="container px-5 px-sm-0">
+  <h3>シーン一覧・追加</h3>
+    <div>
+      <%= render "error", scene: @scene %>
+    </div>
+
+    <%= form_with model: [:admin, @scene] do |f| %>
+      <p>
+        <%= f.text_field :name, placeholder: "シーン名追加" %>
+        <%= f.submit "新規登録",class: 'btn btn-success' %>
+      </p>
+    <% end %>
+
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">シーン</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @scenes.each do |scene| %>
+          <tr>
+            <td><%= scene.name %></td>
+            <td><%= link_to "編集する", edit_admin_scene_path(scene.id), class: 'btn btn-success' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+</div>

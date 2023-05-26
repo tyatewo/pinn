@@ -1,0 +1,9 @@
+<% if gift.bookmarked_by?(current_customer) %>
+  <%= link_to gift_bookmarks_path(gift), method: :delete, remote: true do %>
+    <i class="fas fa-bookmark" style="color: #d2772d;"></i><%= gift.bookmarks.count %>
+  <% end %>
+<% else %>
+  <%= link_to gift_bookmarks_path(gift), method: :post, remote: true do %>
+    <i class="far fa-bookmark" style="color: #d2772d;"></i><%= gift.bookmarks.count %>
+  <% end %>
+<% end %>

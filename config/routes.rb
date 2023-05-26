@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     }
 
     devise_scope :customer do
-      resource :my_pages, only: [:edit, :update] # 会員情報変更(マイページ)
+      resources :my_pages, only: [:show, :edit, :update] do# 会員情報変更(マイページ)
+        get 'bookmarks', on: :collection
+      end
       post '/guest_sign_in', to: 'sessions#guest_sign_in' #ゲストログイン用
     end
 
@@ -18,8 +20,11 @@ Rails.application.routes.draw do
     resources :gifts do
       resources :comments, except: [:index]
       # resources :tags, except: [:index] # TODO: gifts内部でロジックが組む場合不要の可能性あり
-      resources :bookmarks, only: [:create, :show, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
     end
+
+    get "/search" => "public/gifts#index", as: 'search'
+
   end
 
   ###########
@@ -32,7 +37,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to: 'customers#index' #管理者トップページ会員一覧
     #会員一覧、詳細、削除（強制退会）
-    resources :customers, only: [:index, :show, :destroy]
+    resources :customers, only: [:index, :show, :destroy]do
+      patch 'cusromers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
+    end
 
     #贈り物一覧、詳細、削除 コメント参照、削除 タグ参照、削除
     resources :gifts, only: [:index, :show, :destroy]do
@@ -43,6 +50,8 @@ Rails.application.routes.draw do
     #シーン一覧、作成、編集、更新
     resources :scenes, only: [:index, :create, :edit, :update]
   end
+
+  get "/admin/search" => "admin/gifts#index"
 
   get '/about', to: 'homes#about'
   root to: 'homes#top'
@@ -60,3 +69,4 @@ end
 #  devise_for :admin, skip: [:registrations, :passwords], controllers: {
 #    sessions: "admin/sessions"
 #  }, path: '', path_names: { sign_in: 'sign_in', sign_out: 'sign_out'}
+# get "search_tag"=>"posts#search_tag"
