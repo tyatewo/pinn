@@ -1,7 +1,7 @@
 <div class="container-fluid px-4">
   <div class="row">
 
-    <div class="col-2">
+    <div class="col-2 mx-4">
       <div class="my-3">
         <%= link_to "すべて表示する", admin_gifts_path, class:"btn btn-outline-success btn-block" %>
       </div>
@@ -30,10 +30,8 @@
       </div>
     </div>
 
-    <div class="row my-5">
-      <div class="mx-auto">
-        <%= paginate @gifts, theme: 'twitter-bootstrap-4' %><%# ページネーション＠商品、テーマ：ツイッターブートストラップ %>
-      </div>
+    <div class="my-5 mx-auto">
+      <%= paginate @gifts, theme: 'twitter-bootstrap-4' %><%# ページネーション＠商品、テーマ：ツイッターブートストラップ %>
     </div>
 
   </div>
