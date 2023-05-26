@@ -1,42 +1,40 @@
-<div class="container px-5 px-sm-0">
+<div class="container-fluid px-4">
   <div class="row">
-    <div class="col-2 mx-1">
-      <div class="search my-2">
-        <%= render partial: "search" %>
-      </div>
-      <div class="my-2">
+
+    <div class="col-2">
+      <div class="my-3">
         <%= link_to "すべて表示する", admin_gifts_path, class:"btn btn-outline-success btn-block" %>
       </div>
-      <div class="my-2">
+      <div class="my-5">
+        <%= render partial: "search" %>
+      </div>
+      <div class="my-5">
         <%= render 'scene_search', scenes: @scenes %>
+      </div>
+      <div class="my-5">
+        <%= render 'tag_search', tag_list: @tag_list %>
       </div>
     </div>
 
     <div class="col-9">
-      <p>
-       <%= link_to '新しい順', admin_gifts_path(latest: "true") %>
-       |<%= link_to '古い順', admin_gifts_path(old: "true") %>
-       |<%= link_to 'ブックマークの多い順', admin_gifts_path(bookmark_count: "true") %>
-      </p>
+      <div class="text-right my-3">
+        <%= image_tag('index.png') %>
+      </div>
+      <div class="text-left">
+        <%= link_to '新しい順', admin_gifts_path(latest: "true") %>
+        |<%= link_to '古い順', admin_gifts_path(old: "true") %>
+        |<%= link_to 'ブックマークの多い順', admin_gifts_path(bookmark_count: "true") %>
+      </div>
+      <div>
         <%= render "post", gifts: @gifts %>
+      </div>
     </div>
-  </div>
 
-  <div class="row my-5">
-    <div class="mx-auto">
-      <%= paginate @gifts, theme: 'twitter-bootstrap-4' %><%# ページネーション＠商品、テーマ：ツイッターブートストラップ %>
+    <div class="row my-5">
+      <div class="mx-auto">
+        <%= paginate @gifts, theme: 'twitter-bootstrap-4' %><%# ページネーション＠商品、テーマ：ツイッターブートストラップ %>
+      </div>
     </div>
-  </div>
 
-  <div class="col-12">
-    <% if @tag_list.present? && @tag_list.count > 0 %>
-      <% @tag_list.each do |list| %>
-        <% if list.gifts.count > 0 %>
-          <i class="fas fa-tag"></i>
-          <%=link_to list.name, admin_gifts_path(tag_id:list.id) %>
-          <%="(#{list.gifts.count})" %>
-        <% end %>
-      <% end %>
-    <% end %>
   </div>
 </div>
