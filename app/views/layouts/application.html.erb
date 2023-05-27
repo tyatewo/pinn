@@ -13,82 +13,82 @@
 
   <body>
     <div class="d-flex flex-column min-vh-100">
-    <header class="mb-5 shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/about"><%= image_tag('logo.png', size: "150x75") %></a>
-          <div>
-            <% if current_customer %>
-              <p>ようこそ <%= current_customer.name %> さん</p>
-            <% end %>
-          </div>
-
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-              <% if customer_signed_in? %>
-                <li class="nav-item">
-                  <%= link_to 'マイページ', my_page_path(current_customer.id), class: 'btn btn-outline-secondary mr-3' %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "贈り物一覧", gifts_path, class: 'btn btn-outline-secondary mr-3' %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to 'pinn!とは', about_path, class: 'btn btn-outline-secondary mr-3' %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-secondary' %>
-                </li>
-              <% elsif admin_signed_in? %>
-                 <li class="nav-item">
-                  <%= link_to "贈り物一覧", admin_gifts_path, class: 'btn btn-outline-secondary mr-3' %>
-                 </li>
-                 <li class="nav-item">
-                  <%= link_to "会員一覧", admin_customers_path, class: 'btn btn-outline-secondary mr-3' %>
-                 </li>
-                 <li class="nav-item">
-                  <%= link_to "シーン一覧", admin_scenes_path, class: 'btn btn-outline-secondary mr-3' %>
-                 </li>
-                 <li class="nav-item">
-                  <%= link_to 'pinn!とは', about_path, class: 'btn btn-outline-secondary mr-3' %>
-                </li>
-                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-outline-secondary' %>
-                </li>
-              <% else %>
-                <li class="nav-item">
-                  <%= link_to 'pinn!とは', about_path, class: 'btn btn-outline-secondary mr-3' %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-outline-secondary mr-3' %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-outline-secondary' %>
-                </li>
+      <header class="mb-5 shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/about"><%= image_tag('logo.png', size: "150x75") %></a>
+            <div>
+              <% if current_customer %>
+                <p>ようこそ <%= current_customer.name %> さん</p>
               <% end %>
-            </ul>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <% if customer_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to 'マイページ', my_page_path(current_customer.id), class: 'btn btn-outline-secondary mr-3' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "贈り物一覧", gifts_path, class: 'btn btn-outline-secondary mr-3' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to 'pinn!とは', about_path, class: 'btn btn-outline-secondary mr-3' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-secondary' %>
+                  </li>
+                <% elsif admin_signed_in? %>
+                   <li class="nav-item">
+                    <%= link_to "贈り物一覧", admin_gifts_path, class: 'btn btn-outline-secondary mr-3' %>
+                   </li>
+                   <li class="nav-item">
+                    <%= link_to "会員一覧", admin_customers_path, class: 'btn btn-outline-secondary mr-3' %>
+                   </li>
+                   <li class="nav-item">
+                    <%= link_to "シーン一覧", admin_scenes_path, class: 'btn btn-outline-secondary mr-3' %>
+                   </li>
+                   <li class="nav-item">
+                    <%= link_to 'pinn!とは', about_path, class: 'btn btn-outline-secondary mr-3' %>
+                  </li>
+                   <li class="nav-item">
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-outline-secondary' %>
+                  </li>
+                <% else %>
+                  <li class="nav-item">
+                    <%= link_to 'pinn!とは', about_path, class: 'btn btn-outline-secondary mr-3' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-outline-secondary mr-3' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-outline-secondary' %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main class="flex-grow-1">
+        <%= flash[:notice] %>
+        <%= yield %>
+      </main>
+
+      <footer>
+        <div class="container mt-2">
+          <div class="row justify-content-center">
+            <div class="col-md-4">
+              <%= image_tag('logo.png') %>
+            </div>
           </div>
         </div>
-      </nav>
-    </header>
-
-    <main class="flex-grow-1">
-      <%= flash[:notice] %>
-      <%= yield %>
-    </main>
-
-    <footer>
-      <div class="container mt-2">
-        <div class="row justify-content-center">
-          <div class="col-md-4">
-            <%= image_tag('logo.png') %>
-          </div>
-        </div>
-      </div>
-    </footer>
+      </footer>
 
 
 

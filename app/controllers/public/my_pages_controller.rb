@@ -21,7 +21,6 @@ class Public::MyPagesController < ApplicationController
   end
 
   def bookmarks
-    #customer = Customer.find(params[:id])
     @bookmarks = current_customer.bookmarks
   end
 
