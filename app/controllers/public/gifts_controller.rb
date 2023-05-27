@@ -6,44 +6,43 @@ class Public::GiftsController < ApplicationController
     if current_customer.name == "guestuser"
       flash[:notice] = "ゲストユーザーは新規投稿できません。"
       redirect_to gifts_path
-    else
-      @gift = Gift.new
-      @scenes = Scene.all
     end
+
+    @gift = Gift.new
+    @scenes = Scene.all
   end
 
   def create
     if current_customer.name == "guestuser"
       flash[:notice] = "ゲストユーザーは新規投稿できません。"
       redirect_to gifts_path
-    else
-      @gift = Gift.new(gift_params)
-      @gift.customer_id = current_customer.id
-      @tag_list = params[:gift][:tag_name].split(',')
-        if @gift.save
-           @gift.save_tag(@tag_list)
-           flash[:notice] = "投稿が完了しました。"
-           redirect_to gifts_path
-        else
-          @scenes = Scene.all
-          render :new
-        end
     end
+    @gift = Gift.new(gift_params)
+    @gift.customer_id = current_customer.id
+    @tag_list = params[:gift][:tag_name].split(',')
+    if @gift.save == false
+      @scenes = Scene.all
+      render :new
+      return
+    end
+    @gift.save_tag(@tag_list)
+    flash[:notice] = "投稿が完了しました。"
+    redirect_to gifts_path
   end
 
   def index
 
-    if params[:search]
+    if params[:search] #キーワード検索
       @gifts = Gift.where('name LIKE ?', "%#{params[:search]}%").page(params[:page]).per(12)
-    elsif params[:tag_id]
+    elsif params[:tag_id] #タグ検索
       @gifts = Tag.find(params[:tag_id]).gifts.page(params[:page]).per(12)
-    elsif params[:scene_id]
+    elsif params[:scene_id] #シーン検索
       @gifts = Scene.find(params[:scene_id]).gifts.page(params[:page]).per(12)
-    elsif params[:latest]
+    elsif params[:latest] #新しい順
       @gifts = Gift.latest.page(params[:page]).per(12)
-    elsif params[:old]
+    elsif params[:old] #古い順
       @gifts = Gift.old.page(params[:page]).per(12)
-    elsif params[:bookmark_count]
+    elsif params[:bookmark_count] #ブックマークが多い順
        @gifts = Gift.includes(:bookmarks).sort {|a,b| b.bookmarks.size <=> a.bookmarks.size}
        @gifts = Kaminari.paginate_array(@gifts).page(params[:page]).per(12)
     else

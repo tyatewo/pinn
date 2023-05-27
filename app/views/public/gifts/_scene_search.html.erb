@@ -1,7 +1,7 @@
 <div>
   <h5 class="text-left text-dark"><strong>シーン検索</strong></h5>
   <div>
-    <% @scenes.each do |scene| %>
+    <% scenes.each do |scene| %>
       <%= link_to scene.name, gifts_path(scene_id: scene.id), class: 'd-block text-body mb-2' %>
     <% end %>
   </div>
