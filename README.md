@@ -84,12 +84,9 @@ SNSを見てたら広告でポンとおしゃれな贈り物が出て、「こ�
 貰ったことのある贈り物に対し感想をシェアしたい時。
 
 ## 設計書
-画面遷移図
-- https://app.diagrams.net/?src=about#G1tBsGLamc5YN4hkP6mGb_UBspmYHaXPUI
-ワイヤーフレーム
-- https://app.diagrams.net/?src=about#G1pFXgPdGPmP4zRKZjdiKHsRfRBrgUwzWe
-ER図
-- https://app.diagrams.net/?src=about#G1p218TtILmoCtIHdjJCe9GlSqqAdnT2tU
+- 画面遷移図https://app.diagrams.net/?src=about#G1tBsGLamc5YN4hkP6mGb_UBspmYHaXPUI
+- ワイヤーフレームhttps://app.diagrams.net/?src=about#G1pFXgPdGPmP4zRKZjdiKHsRfRBrgUwzWe
+- ER図https://app.diagrams.net/?src=about#G1p218TtILmoCtIHdjJCe9GlSqqAdnT2tU
 
 ## 開発環境
 - OS：Linux(CentOS)
