@@ -3,17 +3,23 @@
           <p>該当する贈り物が見つかりませんでした。</p>
         <% else %>
           <% gifts.each do |gift| %> <%# 商品たちを一個ずつ取り出します。 %>
-            <div class="col-3 p-3 text-center shadow-sm">
-              <%= link_to admin_gift_path(gift.id) do %><%# その商品の詳細ページ %>
-              <% if gift.gift_image.attached? %>
-                <%= image_tag gift.gift_image, size: "175x175" %> <%# 商品の商品画像 %>
-              <% else %>
-                <%= image_tag "no-image/Gift_no_image.jpg", size: "175x175" %>
-              <% end %>
-              <% end %>
-                <p class="text-body"><%= gift.name %></p><%# 商品の名前 %>
-                <p class="text-body"><%= gift.shop_name %></p><%# 店舗の名前 %>
-                <p class="text-body">♡<%= gift.bookmarks.count %></p>
+            <div class="col-3 mb-3">
+              <div class="card shadow-sm">
+                <%= link_to admin_gift_path(gift.id) do %><%# その商品の詳細ページ %>
+                  <% if gift.gift_image.attached? %>
+                    <%= image_tag gift.gift_image, class: "card-img-top", alt: "Gift Image", style: "width: 100%; height: 175px;" %> <%# 商品の商品画像 %>
+                  <% else %>
+                    <%= image_tag "no-image/Gift_no_image.jpg", class: "card-img-top", alt: "no image", style: "width: 100%; height: 175px;" %>
+                  <% end %>
+                <% end %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= gift.name %></p><%# 商品の名前 %>
+                  <p class="card-text"><%= gift.shop_name %></p><%# 店舗の名前 %>
+                  <p class="card-text"><i class="far fa-bookmark" style="color: #d2772d;"></i>
+                    <%= gift.bookmarks.count %>
+                  </p>
+                </div>
+              </div>
             </div>
           <% end %>
         <% end %>
